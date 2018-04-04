@@ -8,7 +8,7 @@
 
 The modern JavaScript landscape has many frameworks to choose from to organize your frontend code, both from a more traditional MVC or MV\* architecture or a more modular and view focused component driven approach.
 
-Angular
+### Angular
 
 * Traditional MVC, with some component driven design
 * Many services built into the framework
@@ -16,18 +16,18 @@ Angular
 * Enterprise focused
 * Batteries included
 
-None
+### None
 
 * If all you need is DOM modification and basic AJAX, you can use them in most modern browsers
 * jQuery is an option if you need to rely on older browsers and don&#39;t want to set up build tools for polyfills
 * Web Components provide some built in component architecture support, but browser support is limited with Firefox refusing to support the current version of the HTML imports spec
 
-Polymer
+### Polymer
 
 * An in between of Angular&#39;s convenience and structure with the simplicity of Web Components
 * Makes Web Components easier to write and reuse while polyfill to get around browser compatibility issues
 
-React
+### React
 
 * Component driven
 * Very minimal API means that React apps tend to rely more on built in JavaScript language features, while also allowing the freedom to add in other modular frameworks like Redux or React Router
@@ -35,7 +35,7 @@ React
 * Great for pure functional programming and immutable data structures
 * JavaScript itself is used for templating within JSX, an HTML like syntax to describe React elements
 
-Vue
+### Vue
 
 * Component driven
 * Almost as modular as React, while having an easier to learn and more Angular like syntax and architecture
@@ -45,18 +45,18 @@ Vue
 
 [https://medium.com/@dan_abramov/you-might-not-need-redux-be46360cf367](https://medium.com/@dan_abramov/you-might-not-need-redux-be46360cf367)
 
-MobX
+### MobX
 
 * Observer pattern for React and other component based frameworks
 
-React
+### React
 
 * Local state per component, allowing state slices to have all their logic in one unit of code
 * State that can&#39;t be serialized
 * Abstract state into container components per presentational component without merging state into a single store
 * State can be merged into monolithic parent components and passed down using Context without the indirection of Redux
 
-React-Redux
+### React-Redux
 
 * Simplified version of the Flux architecture, with excellent React bindings
 * Persisting state
@@ -66,52 +66,52 @@ React-Redux
 * Separate business logic from views completely
 * shouldComponentUpdate methods become necessary to implement to prevent expensive rerenders but time consuming to write
 
-Vuex
+### Vuex
 
 * Specifically designed for Vue
 
 ## React Styling
 
-CSS
+### CSS
 
 * Works just like it does normally with globally exposed styles, you simply add the className prop to React components to assign your styles to components
 
-CSS Modules
+### CSS Modules
 
 * Scopes ordinary CSS files so they&#39;re only applied to the component files they&#39;re imported in
 * Allows standard CSS syntax to be used with a component driven design
 
-CSS in JS
+### CSS in JS
 
 * Allows CSS to be attached to a React component in its main JS file with dynamic templating, just like JSX
 
 ## JavaScript Build Tool
 
-create-react-app
+### create-react-app
 
 * Zero configuration
 * The best, officially supported build tool for React projects
 * Very easy to set up with many best practices and advanced developer tools enabled by default
 * Very limited configurability, requires ejecting and disabling easy updates for more advanced features
 
-Browserify
+### Browserify
 
 * Simplify concatenates module files together and prepares them for browser use
 * More limited for configuring advanced compilation
 
-Parcel
+### Parcel
 
 * ES modules
 * Zero configuration
 * Focused mainly toward apps
 
-Rollup
+### Rollup
 
 * ES modules
 * Advanced configuration
 * Focused mainly toward packages
 
-Webpack
+### Webpack
 
 * ES modules
 * Advanced configuration support
@@ -119,27 +119,27 @@ Webpack
 
 ## Shell
 
-Bash
+### Bash
 
 * The default on most modern systems
 * Great script compatibility and the standard for most shell scripts
 
-Zsh
+### Zsh
 
 * Mostly compatible with bash while having some advanced features for power users
 
-Fish
+### Fish
 
 * Easy to use with great defaults, but the syntax is mostly incompatible with bash
 
 ## Editor
 
-Atom
+### Atom
 
 * Easy to use
 * Extensible
 
-Emacs
+### Emacs
 
 * Extensible
 * One of the most flexible and mature editors
@@ -151,14 +151,14 @@ Emacs
 * It has built in videogames!
 * Advanced editing keybinds that aren&#39;t modal (though Evil can be used to emulate Vim)
 
-Vim
+### Vim
 
 * Very ergonomic keybindings
 * Best modal editing support built into an editor
 * Runs in a CLI (prefered) or GUI
 * Runs lightweight on remote servers
 
-Visual Studio Code
+### Visual Studio Code
 
 * Easy to use
 * Faster and lighter than Atom, while still based on web technologies (specifically Electron)
