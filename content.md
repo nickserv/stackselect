@@ -1,7 +1,7 @@
 # StackSelect Quizzes
 
 * Automate asking people for advice about what tech to use
-* Fight the catch 22 problem of picking the wrong technology to learn because you don&#39;t understand its strengths and weaknesses compared to alternatives
+* Fight the catch 22 problem of picking the wrong technology to learn because you don’t understand its strengths and weaknesses compared to alternatives
 * All quizzes result in a free, open source, and well supported technology
 
 ## JavaScript Frontend Framework
@@ -19,12 +19,12 @@ The modern JavaScript landscape has many frameworks to choose from to organize y
 ### None
 
 * If all you need is DOM modification and basic AJAX, you can use them in most modern browsers
-* jQuery is an option if you need to rely on older browsers and don&#39;t want to set up build tools for polyfills
+* jQuery is an option if you need to rely on older browsers and don’t want to set up build tools for polyfills
 * Web Components provide some built in component architecture support, but browser support is limited with Firefox refusing to support the current version of the HTML imports spec
 
 ### Polymer
 
-* An in between of Angular&#39;s convenience and structure with the simplicity of Web Components
+* An in between of Angular’s convenience and structure with the simplicity of Web Components
 * Makes Web Components easier to write and reuse while polyfill to get around browser compatibility issues
 
 ### React
@@ -43,7 +43,7 @@ The modern JavaScript landscape has many frameworks to choose from to organize y
 
 ## JavaScript State Manager
 
-[https://medium.com/@dan_abramov/you-might-not-need-redux-be46360cf367](https://medium.com/@dan_abramov/you-might-not-need-redux-be46360cf367)
+https://medium.com/@dan_abramov/you-might-not-need-redux-be46360cf367
 
 ### MobX
 
@@ -52,7 +52,7 @@ The modern JavaScript landscape has many frameworks to choose from to organize y
 ### React
 
 * Local state per component, allowing state slices to have all their logic in one unit of code
-* State that can&#39;t be serialized
+* State that can’t be serialized
 * Abstract state into container components per presentational component without merging state into a single store
 * State can be merged into monolithic parent components and passed down using Context without the indirection of Redux
 
@@ -78,7 +78,7 @@ The modern JavaScript landscape has many frameworks to choose from to organize y
 
 ### CSS Modules
 
-* Scopes ordinary CSS files so they&#39;re only applied to the component files they&#39;re imported in
+* Scopes ordinary CSS files so they’re only applied to the component files they’re imported in
 * Allows standard CSS syntax to be used with a component driven design
 
 ### CSS in JS
@@ -149,7 +149,7 @@ The modern JavaScript landscape has many frameworks to choose from to organize y
 * Very integrated experience, but highly customizable
 * Can run as a daemon, meaning that large Emacs configs only have to load once when you login and then each editor instance opens very quickly
 * It has built in videogames!
-* Advanced editing keybinds that aren&#39;t modal (though Evil can be used to emulate Vim)
+* Advanced editing keybinds that aren’t modal (though Evil can be used to emulate Vim)
 
 ### Vim
 
