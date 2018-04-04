@@ -14,9 +14,9 @@ The modern JavaScript landscape has many frameworks to choose from to organize y
 
 ### None
 
+* Web standard
 * If all you need is DOM modification and basic AJAX, you can use them in most modern browsers
 * jQuery is an option if you need to rely on older browsers and don’t want to set up build tools for polyfills
-* Web Components provide some built in component architecture support, but browser support is limited with Firefox refusing to support the current version of the HTML imports spec
 
 ### Polymer
 
@@ -36,6 +36,12 @@ The modern JavaScript landscape has many frameworks to choose from to organize y
 * Component driven
 * Almost as modular as React, while having an easier to learn and more Angular like syntax and architecture
 * Also supports JSX, while having a simpler HTML templating system built in
+
+### Web Components
+
+* Web standard
+* Provide some built in component architecture support
+* Browser support is limited with Firefox refusing to support the current version of the HTML imports spec
 
 ## JavaScript State Manager
 
