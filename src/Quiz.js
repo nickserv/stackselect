@@ -21,14 +21,14 @@ export default withStyles(theme => ({
     paddingBottom: 16,
     marginTop: theme.spacing.unit * 3
   })
-}))(({ classes: { stepper, title } }) => (
+}))(({ classes: { stepper, title }, match: { params: { name } } }) => (
   <Fragment>
     <Typography variant="title" className={title}>
-      {quizzes[0].name}
+      {name}
     </Typography>
 
     <Stepper orientation="vertical" className={stepper}>
-      {quizzes[0].questions.map((question, index) => (
+      {quizzes.find(quiz => quiz.name === name).questions.map(question => (
         <Step key={question.name}>
           <StepLabel>{question.name}</StepLabel>
 
@@ -36,6 +36,7 @@ export default withStyles(theme => ({
             <RadioGroup>
               {Object.keys(question.options).map(option => (
                 <FormControlLabel
+                  key={option}
                   control={<Radio checked={false} />}
                   label={option}
                 />

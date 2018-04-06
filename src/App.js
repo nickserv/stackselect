@@ -18,7 +18,7 @@ export default () => (
       </AppBar>
 
       <Route exact path="/" component={Home} />
-      <Route path="/:id" component={Quiz} />
+      <Route path="/:name" component={Quiz} />
     </Fragment>
   </BrowserRouter>
 );

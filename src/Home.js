@@ -5,11 +5,10 @@ import quizzes from './quizzes';
 
 export default () => (
   <List subheader={<ListSubheader>Quizzes</ListSubheader>}>
-    <ListItem button component={Link} to={quizzes[0].name}>
-      <ListItemText
-        primary={quizzes[0].name}
-        secondary={quizzes[0].description}
-      />
-    </ListItem>
+    {quizzes.map(({ description, name }) => (
+      <ListItem key={name} button component={Link} to={name}>
+        <ListItemText primary={name} secondary={description} />
+      </ListItem>
+    ))}
   </List>
 );
