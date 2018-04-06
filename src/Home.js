@@ -5,7 +5,7 @@ import quizzes from './quizzes';
 
 export default () => (
   <List subheader={<ListSubheader>Quizzes</ListSubheader>}>
-    <ListItem component={Link} to={quizzes[0].name}>
+    <ListItem button component={Link} to={quizzes[0].name}>
       <ListItemText
         primary={quizzes[0].name}
         secondary={quizzes[0].description}
