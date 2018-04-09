@@ -50,9 +50,7 @@ class Quiz extends Component {
 }
 
 export default withStyles(theme => ({
-  stepper: {
-    backgroundColor: theme.palette.background.default
-  },
+  stepper: { backgroundColor: theme.palette.background.default },
   title: theme.mixins.gutters({
     paddingTop: 16,
     paddingBottom: 16,
