@@ -3,8 +3,8 @@ import {
   Radio,
   RadioGroup,
   Step,
+  StepButton,
   StepContent,
-  StepLabel,
   Stepper,
   Typography,
   withStyles
@@ -13,13 +13,14 @@ import React, { Component, Fragment } from 'react';
 import quizzes from './quizzes';
 
 class Quiz extends Component {
-  state = {};
+  state = { step: 0 };
 
   render() {
     const {
       classes: { stepper, title },
       match: { params: { name } }
     } = this.props;
+    const { step } = this.state;
 
     return (
       <Fragment>
@@ -27,12 +28,19 @@ class Quiz extends Component {
           {name}
         </Typography>
 
-        <Stepper orientation="vertical" className={stepper}>
+        <Stepper
+          orientation="vertical"
+          className={stepper}
+          activeStep={step}
+          nonLinear
+        >
           {quizzes
             .find(quiz => quiz.name === name)
-            .questions.map(({ name, options }) => (
+            .questions.map(({ name, options }, step) => (
               <Step key={name}>
-                <StepLabel>{name}</StepLabel>
+                <StepButton onClick={() => this.setState({ step })}>
+                  {name}
+                </StepButton>
 
                 <StepContent>
                   <RadioGroup
