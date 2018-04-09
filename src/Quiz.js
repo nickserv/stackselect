@@ -13,6 +13,8 @@ import React, { Component, Fragment } from 'react';
 import quizzes from './quizzes';
 
 class Quiz extends Component {
+  state = {};
+
   render() {
     const {
       classes: { stepper, title },
@@ -33,12 +35,18 @@ class Quiz extends Component {
                 <StepLabel>{name}</StepLabel>
 
                 <StepContent>
-                  <RadioGroup>
+                  <RadioGroup
+                    onChange={({ target: { value } }) =>
+                      this.setState({ [name]: value })
+                    }
+                    value={this.state[name]}
+                  >
                     {Object.keys(options).map(option => (
                       <FormControlLabel
                         key={option}
-                        control={<Radio checked={false} />}
+                        control={<Radio />}
                         label={option}
+                        value={option}
                       />
                     ))}
                   </RadioGroup>
