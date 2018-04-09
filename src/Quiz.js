@@ -26,23 +26,25 @@ class Quiz extends Component {
         </Typography>
 
         <Stepper orientation="vertical" className={stepper}>
-          {quizzes.find(quiz => quiz.name === name).questions.map(question => (
-            <Step key={question.name}>
-              <StepLabel>{question.name}</StepLabel>
+          {quizzes
+            .find(quiz => quiz.name === name)
+            .questions.map(({ name, options }) => (
+              <Step key={name}>
+                <StepLabel>{name}</StepLabel>
 
-              <StepContent>
-                <RadioGroup>
-                  {Object.keys(question.options).map(option => (
-                    <FormControlLabel
-                      key={option}
-                      control={<Radio checked={false} />}
-                      label={option}
-                    />
-                  ))}
-                </RadioGroup>
-              </StepContent>
-            </Step>
-          ))}
+                <StepContent>
+                  <RadioGroup>
+                    {Object.keys(options).map(option => (
+                      <FormControlLabel
+                        key={option}
+                        control={<Radio checked={false} />}
+                        label={option}
+                      />
+                    ))}
+                  </RadioGroup>
+                </StepContent>
+              </Step>
+            ))}
         </Stepper>
       </Fragment>
     );
