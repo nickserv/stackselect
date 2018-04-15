@@ -7,14 +7,18 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.1",
+    "react-scripts-ts": "2.15.1",
     "typeface-roboto": "0.0.54"
   },
+  "devDependencies": {
+    "@types/react-dom": "^16.0.5",
+    "typescript": "^2.8.1"
+  },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "start": "react-scripts-ts start",
+    "build": "react-scripts-ts build",
+    "test": "react-scripts-ts test --env=jsdom",
+    "eject": "react-scripts-ts eject"
   },
   "eslintConfig": {
     "extends": "react-app"

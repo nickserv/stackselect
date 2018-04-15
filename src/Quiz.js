@@ -19,15 +19,16 @@ class Quiz extends Component {
   render() {
     const {
       classes: { chips, stepper, title },
-      match: { params: { name } }
+      match
     } = this.props;
     const { step } = this.state;
-    const questions = quizzes.find(quiz => quiz.name === name).questions;
+    const questions = quizzes.find(quiz => quiz.name === match.params.name)
+      .questions;
 
     return (
       <Fragment>
         <Typography variant="title" className={title}>
-          {name}
+          {match.params.name}
         </Typography>
 
         <div className={chips}>
@@ -40,9 +41,9 @@ class Quiz extends Component {
           activeStep={step}
           nonLinear
         >
-          {questions.map(({ name, options }, step) => (
+          {questions.map(({ name, options }, index) => (
             <Step key={name}>
-              <StepButton onClick={() => this.setState({ step })}>
+              <StepButton onClick={() => this.setState({ step: index })}>
                 {name}
               </StepButton>
 
@@ -75,8 +76,8 @@ export default withStyles(theme => ({
   chips: theme.mixins.gutters(),
   stepper: { backgroundColor: theme.palette.background.default },
   title: theme.mixins.gutters({
-    paddingTop: 16,
+    marginTop: theme.spacing.unit * 3,
     paddingBottom: 16,
-    marginTop: theme.spacing.unit * 3
+    paddingTop: 16
   })
 }))(Quiz);

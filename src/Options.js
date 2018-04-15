@@ -5,13 +5,11 @@ const flatten = array => [].concat(...array);
 const unique = array => Array.from(new Set(array));
 
 const Options = ({ classes: { chip }, questions }) => {
-  const options = unique(
+  return unique(
     flatten(questions.map(({ options }) => flatten(Object.values(options))))
-  ).sort();
-
-  return options.map(option => (
-    <Chip key={option} className={chip} label={option} />
-  ));
+  )
+    .sort()
+    .map(option => <Chip key={option} className={chip} label={option} />);
 };
 
 export default withStyles(theme => ({
