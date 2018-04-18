@@ -1,5 +1,7 @@
 # StackSelect
 
+[![Build Status](https://travis-ci.org/nickmccurdy/stackselect.svg?branch=master)](https://travis-ci.org/nickmccurdy/stackselect)
+
 Quizzes that help developers select technologies.
 
 ## Goals
