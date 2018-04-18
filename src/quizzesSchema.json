@@ -15,12 +15,17 @@
               "type": "object",
               "additionalProperties": {
                 "type": "array",
-                "items": { "type": "string" }
+                "items": { "type": "string" },
+                "uniqueItems": true
               }
             }
-          }
-        }
+          },
+          "required": ["name", "options"]
+        },
+        "uniqueItems": true
       }
-    }
-  }
+    },
+    "required": ["name", "description", "questions"]
+  },
+  "uniqueItems": true
 }
