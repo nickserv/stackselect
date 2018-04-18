@@ -10,10 +10,13 @@
     "react-scripts": "1.1.4",
     "typeface-roboto": "0.0.54"
   },
+  "devDependencies": {
+    "ajv-cli": "^3.0.0"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "ajv -s src/quizzesSchema.json -d src/quizzes.json",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
