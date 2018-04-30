@@ -8,21 +8,23 @@ import {
   Stepper,
   Typography,
   withStyles
-} from 'material-ui';
-import React, { Component, Fragment } from 'react';
-import Options from './Options';
-import quizzes from './quizzes';
+} from 'material-ui'
+import React, { Component, Fragment } from 'react'
+import Options from './Options'
+import quizzes from './quizzes'
 
 class Quiz extends Component {
-  state = { step: 0 };
+  state = { step: 0 }
 
   render() {
     const {
       classes: { chips, stepper, title },
-      match: { params: { name } }
-    } = this.props;
-    const { step } = this.state;
-    const questions = quizzes.find(quiz => quiz.name === name).questions;
+      match: {
+        params: { name }
+      }
+    } = this.props
+    const { step } = this.state
+    const questions = quizzes.find(quiz => quiz.name === name).questions
 
     return (
       <Fragment>
@@ -67,7 +69,7 @@ class Quiz extends Component {
           ))}
         </Stepper>
       </Fragment>
-    );
+    )
   }
 }
 
@@ -79,4 +81,4 @@ export default withStyles(theme => ({
     paddingBottom: 16,
     marginTop: theme.spacing.unit * 3
   })
-}))(Quiz);
+}))(Quiz)

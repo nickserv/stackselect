@@ -23,6 +23,7 @@
     "extends": "react-app"
   },
   "prettier": {
+    "semi": false,
     "singleQuote": true
   }
 }

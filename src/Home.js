@@ -4,11 +4,11 @@ import {
   ListItemText,
   ListSubheader,
   Typography
-} from 'material-ui';
-import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom';
-import Options from './Options';
-import quizzes from './quizzes';
+} from 'material-ui'
+import React, { Fragment } from 'react'
+import { Link } from 'react-router-dom'
+import Options from './Options'
+import quizzes from './quizzes'
 
 export default () => (
   <List subheader={<ListSubheader>Quizzes</ListSubheader>}>
@@ -27,4 +27,4 @@ export default () => (
       </ListItem>
     ))}
   </List>
-);
+)
