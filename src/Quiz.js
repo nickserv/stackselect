@@ -18,7 +18,7 @@ class Quiz extends Component {
 
   render() {
     const {
-      classes: { chips, stepper, title },
+      classes: { stepper, title },
       match: {
         params: { name }
       }
@@ -31,10 +31,6 @@ class Quiz extends Component {
         <Typography variant="title" className={title}>
           {name}
         </Typography>
-
-        <div className={chips}>
-          <Options questions={questions} />
-        </div>
 
         <Stepper
           orientation="vertical"
@@ -55,11 +51,15 @@ class Quiz extends Component {
                   }
                   value={this.state[name]}
                 >
-                  {Object.keys(options).map(option => (
+                  {Object.entries(options).map(([option, technologies]) => (
                     <FormControlLabel
                       key={option}
                       control={<Radio />}
-                      label={option}
+                      label={
+                        <Fragment>
+                          {option} <Options options={technologies} />
+                        </Fragment>
+                      }
                       value={option}
                     />
                   ))}
@@ -74,7 +74,6 @@ class Quiz extends Component {
 }
 
 export default withStyles(theme => ({
-  chips: theme.mixins.gutters(),
   stepper: { backgroundColor: theme.palette.background.default },
   title: theme.mixins.gutters({
     paddingTop: 16,
