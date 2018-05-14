@@ -4,7 +4,7 @@ import {
   ListItemText,
   ListSubheader,
   Typography
-} from 'material-ui'
+} from '@material-ui/core'
 import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import Options from './Options'

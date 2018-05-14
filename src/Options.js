@@ -1,4 +1,4 @@
-import { Chip, withStyles } from 'material-ui'
+import { Chip, withStyles } from '@material-ui/core'
 import React from 'react'
 
 const flatten = array => [].concat(...array)

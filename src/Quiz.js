@@ -8,7 +8,7 @@ import {
   Stepper,
   Typography,
   withStyles
-} from 'material-ui'
+} from '@material-ui/core'
 import React, { Component, Fragment } from 'react'
 import Options from './Options'
 import quizzes from './quizzes'

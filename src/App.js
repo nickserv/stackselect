@@ -1,4 +1,4 @@
-import { AppBar, CssBaseline, Toolbar, Typography } from 'material-ui'
+import { AppBar, CssBaseline, Toolbar, Typography } from '@material-ui/core'
 import React, { Fragment } from 'react'
 import { BrowserRouter, Route } from 'react-router-dom'
 import Home from './Home'
