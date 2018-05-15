@@ -9,11 +9,22 @@ import {
   Typography,
   withStyles
 } from '@material-ui/core'
+import PropTypes from 'prop-types'
 import React, { Component, Fragment } from 'react'
 import Options from './Options'
 import quizzes from './quizzes'
 
 class Quiz extends Component {
+  static propTypes = {
+    classes: PropTypes.shape({
+      stepper: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired
+    }).isRequired,
+    match: PropTypes.shape({
+      params: PropTypes.shape({ name: PropTypes.string.isRequired }).isRequired
+    }).isRequired
+  }
+
   questions = quizzes.find(quiz => quiz.name === this.props.match.params.name)
     .questions
 
