@@ -14,7 +14,10 @@ import Options from './Options'
 import quizzes from './quizzes'
 
 class Quiz extends Component {
-  state = { step: 0 }
+  questions = quizzes.find(quiz => quiz.name === this.props.match.params.name)
+    .questions
+
+  state = { step: 0, steps: new Array(this.questions.length) }
 
   render() {
     const {
@@ -23,8 +26,7 @@ class Quiz extends Component {
         params: { name }
       }
     } = this.props
-    const { step } = this.state
-    const questions = quizzes.find(quiz => quiz.name === name).questions
+    const { step, steps } = this.state
 
     return (
       <Fragment>
@@ -38,7 +40,7 @@ class Quiz extends Component {
           activeStep={step}
           nonLinear
         >
-          {questions.map(({ name, options }, step) => (
+          {this.questions.map(({ name, options }, step) => (
             <Step key={name}>
               <StepButton onClick={() => this.setState({ step })}>
                 {name}
@@ -47,9 +49,15 @@ class Quiz extends Component {
               <StepContent>
                 <RadioGroup
                   onChange={({ target: { value } }) =>
-                    this.setState({ [name]: value })
+                    this.setState(({ steps }) => ({
+                      steps: [
+                        ...steps.slice(0, step),
+                        value,
+                        ...steps.slice(step + 1)
+                      ]
+                    }))
                   }
-                  value={this.state[name]}
+                  value={steps[step]}
                 >
                   {Object.entries(options).map(([option, technologies]) => (
                     <FormControlLabel
