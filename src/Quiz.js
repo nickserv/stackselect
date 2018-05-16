@@ -8,22 +8,34 @@ import {
   Stepper,
   Typography,
   withStyles
-} from 'material-ui';
-import React, { Component, Fragment } from 'react';
-import Options from './Options';
-import quizzes from './quizzes';
+} from '@material-ui/core'
+import PropTypes from 'prop-types'
+import React, { Component, Fragment } from 'react'
+import Options from './Options'
+import quizzes from './quizzes'
 
 class Quiz extends Component {
-  state = { step: 0 };
+  static propTypes = {
+    classes: PropTypes.shape({
+      stepper: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired
+    }).isRequired,
+    match: PropTypes.shape({
+      params: PropTypes.shape({ name: PropTypes.string.isRequired }).isRequired
+    }).isRequired
+  }
+
+  questions = quizzes.find(quiz => quiz.name === this.props.match.params.name)
+    .questions
+
+  state = { step: 0, steps: new Array(this.questions.length) }
 
   render() {
     const {
-      classes: { chips, stepper, title },
+      classes: { stepper, title },
       match
-    } = this.props;
-    const { step } = this.state;
-    const questions = quizzes.find(quiz => quiz.name === match.params.name)
-      .questions;
+    } = this.props
+    const { step, steps } = this.state
 
     return (
       <Fragment>
@@ -31,17 +43,13 @@ class Quiz extends Component {
           {match.params.name}
         </Typography>
 
-        <div className={chips}>
-          <Options questions={questions} />
-        </div>
-
         <Stepper
           orientation="vertical"
           className={stepper}
           activeStep={step}
           nonLinear
         >
-          {questions.map(({ name, options }, index) => (
+          {this.questions.map(({ name, options }, index) => (
             <Step key={name}>
               <StepButton onClick={() => this.setState({ step: index })}>
                 {name}
@@ -50,15 +58,25 @@ class Quiz extends Component {
               <StepContent>
                 <RadioGroup
                   onChange={({ target: { value } }) =>
-                    this.setState({ [name]: value })
+                    this.setState(state => ({
+                      steps: [
+                        ...state.steps.slice(0, step),
+                        value,
+                        ...state.steps.slice(step + 1)
+                      ]
+                    }))
                   }
-                  value={this.state[name]}
+                  value={steps[step]}
                 >
-                  {Object.keys(options).map(option => (
+                  {Object.entries(options).map(([option, technologies]) => (
                     <FormControlLabel
                       key={option}
                       control={<Radio />}
-                      label={option}
+                      label={
+                        <Fragment>
+                          {option} <Options options={technologies} />
+                        </Fragment>
+                      }
                       value={option}
                     />
                   ))}
@@ -68,16 +86,15 @@ class Quiz extends Component {
           ))}
         </Stepper>
       </Fragment>
-    );
+    )
   }
 }
 
 export default withStyles(theme => ({
-  chips: theme.mixins.gutters(),
   stepper: { backgroundColor: theme.palette.background.default },
   title: theme.mixins.gutters({
     marginTop: theme.spacing.unit * 3,
     paddingBottom: 16,
     paddingTop: 16
   })
-}))(Quiz);
+}))(Quiz)

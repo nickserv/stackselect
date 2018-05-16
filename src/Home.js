@@ -4,11 +4,19 @@ import {
   ListItemText,
   ListSubheader,
   Typography
-} from 'material-ui';
-import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom';
-import Options from './Options';
-import quizzes from './quizzes';
+} from '@material-ui/core'
+import React, { Fragment } from 'react'
+import { Link } from 'react-router-dom'
+import Options from './Options'
+import quizzes from './quizzes'
+
+const flatten = array => [].concat(...array)
+const unique = array => Array.from(new Set(array))
+
+const getOptions = questions =>
+  unique(
+    flatten(questions.map(({ options }) => flatten(Object.values(options))))
+  ).sort()
 
 export default () => (
   <List subheader={<ListSubheader>Quizzes</ListSubheader>}>
@@ -19,7 +27,7 @@ export default () => (
           secondary={
             <Fragment>
               <Typography color="textSecondary">{description}</Typography>
-              <Options questions={questions} />
+              <Options options={getOptions(questions)} />
             </Fragment>
           }
           disableTypography
@@ -27,4 +35,4 @@ export default () => (
       </ListItem>
     ))}
   </List>
-);
+)

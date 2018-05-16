@@ -1,8 +1,8 @@
-import { AppBar, CssBaseline, Toolbar, Typography } from 'material-ui';
-import React, { Fragment } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
-import Home from './Home';
-import Quiz from './Quiz';
+import { AppBar, CssBaseline, Toolbar, Typography } from '@material-ui/core'
+import React, { Fragment } from 'react'
+import { BrowserRouter, Route } from 'react-router-dom'
+import Home from './Home'
+import Quiz from './Quiz'
 
 export default () => (
   <BrowserRouter>
@@ -21,4 +21,4 @@ export default () => (
       <Route path="/:name" component={Quiz} />
     </Fragment>
   </BrowserRouter>
-);
+)
