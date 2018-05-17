@@ -6,7 +6,7 @@ import {
   Typography
 } from '@material-ui/core'
 import React, { Fragment } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, LinkProps } from 'react-router-dom'
 import Options from './Options'
 import quizzes, { IQuestion } from './quizzes'
 
@@ -23,20 +23,24 @@ const getOptions = (questions: IQuestion[]): string[] =>
 export default function Home() {
   return (
     <List subheader={<ListSubheader>Quizzes</ListSubheader>}>
-      {quizzes.map(({ description, name, questions }) => (
-        <ListItem key={name} button={true} component={Link} {...{ to: name }}>
-          <ListItemText
-            primary={<Typography variant="subheading">{name}</Typography>}
-            secondary={
-              <Fragment>
-                <Typography color="textSecondary">{description}</Typography>
-                <Options options={getOptions(questions)} />
-              </Fragment>
-            }
-            disableTypography={true}
-          />
-        </ListItem>
-      ))}
+      {quizzes.map(({ description, name, questions }) => {
+        const linkProps: LinkProps = { to: name }
+
+        return (
+          <ListItem key={name} button={true} component={Link} {...linkProps}>
+            <ListItemText
+              primary={<Typography variant="subheading">{name}</Typography>}
+              secondary={
+                <Fragment>
+                  <Typography color="textSecondary">{description}</Typography>
+                  <Options options={getOptions(questions)} />
+                </Fragment>
+              }
+              disableTypography={true}
+            />
+          </ListItem>
+        )
+      })}
     </List>
   )
 }

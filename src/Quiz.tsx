@@ -27,15 +27,17 @@ interface IProps {
   match: { params: { name: string } }
 }
 
+type AllProps = IProps & WithStyles<'stepper' | 'title'>
+
 interface IState {
   step: number
   steps: string[]
 }
 
-class Quiz extends Component<IProps & WithStyles<'stepper' | 'title'>, IState> {
+class Quiz extends Component<AllProps, IState> {
   private questions: IQuestion[]
 
-  constructor(props: IProps & WithStyles<'stepper' | 'title'>) {
+  constructor(props: AllProps) {
     super(props)
     const quiz = quizzes.find(
       currentQuiz => currentQuiz.name === this.props.match.params.name
@@ -50,14 +52,16 @@ class Quiz extends Component<IProps & WithStyles<'stepper' | 'title'>, IState> {
   public render() {
     const {
       classes: { stepper, title },
-      match
+      match: {
+        params: { name }
+      }
     } = this.props
     const { step, steps } = this.state
 
     return (
       <Fragment>
         <Typography variant="title" className={title}>
-          {match.params.name}
+          {name}
         </Typography>
 
         <Stepper
@@ -66,10 +70,10 @@ class Quiz extends Component<IProps & WithStyles<'stepper' | 'title'>, IState> {
           activeStep={step}
           nonLinear={true}
         >
-          {this.questions.map(({ name, options }, index) => (
-            <Step key={name}>
+          {this.questions.map(({ name: questionName, options }, index) => (
+            <Step key={questionName}>
               <StepButton onClick={this.handleStep.bind(null, index)}>
-                {name}
+                {questionName}
               </StepButton>
 
               <StepContent>
@@ -101,14 +105,14 @@ class Quiz extends Component<IProps & WithStyles<'stepper' | 'title'>, IState> {
   private handleStep = (index: number) => this.setState({ step: index })
 
   private handleSteps = (
-    step: number,
+    index: number,
     { target: { value } }: ChangeEvent<{ value: string }>
   ) =>
     this.setState(state => ({
       steps: [
-        ...state.steps.slice(0, step),
+        ...state.steps.slice(0, index),
         value,
-        ...state.steps.slice(step + 1)
+        ...state.steps.slice(index + 1)
       ]
     }))
 }
