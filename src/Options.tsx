@@ -9,10 +9,12 @@ interface IProps {
   options: string[]
 }
 
-export default decorate<IProps>(({ classes, options }) => (
-  <Fragment>
-    {options.map(option => (
-      <Chip key={option} className={classes.chip} label={option} />
-    ))}
-  </Fragment>
-))
+export default decorate<IProps>(function Options({ classes, options }) {
+  return (
+    <Fragment>
+      {options.map(option => (
+        <Chip key={option} className={classes.chip} label={option} />
+      ))}
+    </Fragment>
+  )
+})

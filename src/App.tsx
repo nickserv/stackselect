@@ -4,21 +4,23 @@ import { BrowserRouter, Route } from 'react-router-dom'
 import Home from './Home'
 import Quiz from './Quiz'
 
-export default () => (
-  <BrowserRouter>
-    <Fragment>
-      <CssBaseline />
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Fragment>
+        <CssBaseline />
 
-      <AppBar position="static">
-        <Toolbar>
-          <Typography variant="headline" color="inherit">
-            StackSelect
-          </Typography>
-        </Toolbar>
-      </AppBar>
+        <AppBar position="static">
+          <Toolbar>
+            <Typography variant="headline" color="inherit">
+              StackSelect
+            </Typography>
+          </Toolbar>
+        </AppBar>
 
-      <Route exact={true} path="/" component={Home} />
-      <Route path="/:name" component={Quiz} />
-    </Fragment>
-  </BrowserRouter>
-)
+        <Route exact={true} path="/" component={Home} />
+        <Route path="/:name" component={Quiz} />
+      </Fragment>
+    </BrowserRouter>
+  )
+}
