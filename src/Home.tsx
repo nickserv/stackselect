@@ -27,7 +27,12 @@ export default function Home() {
         const linkProps: LinkProps = { to: name }
 
         return (
-          <ListItem key={name} button={true} component={Link} {...linkProps}>
+          <ListItem
+            key={name}
+            button={true}
+            component={Link}
+            {...linkProps as any}
+          >
             <ListItemText
               primary={<Typography variant="subheading">{name}</Typography>}
               secondary={
