@@ -17,7 +17,7 @@ export default () => (
         </Toolbar>
       </AppBar>
 
-      <Route exact path="/" component={Home} />
+      <Route exact={true} path="/" component={Home} />
       <Route path="/:name" component={Quiz} />
     </Fragment>
   </BrowserRouter>

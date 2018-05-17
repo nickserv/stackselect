@@ -1,15 +1,18 @@
 import { Chip, withStyles } from '@material-ui/core'
-import PropTypes from 'prop-types'
-import React from 'react'
+import React, { Fragment } from 'react'
 
-const Options = ({ classes: { chip }, options }) =>
-  options.map(option => <Chip key={option} className={chip} label={option} />)
+const decorate = withStyles(theme => ({
+  chip: { margin: theme.spacing.unit }
+}))
 
-Options.propTypes = {
-  classes: PropTypes.shape({ chip: PropTypes.string.isRequired }).isRequired,
-  options: PropTypes.arrayOf(PropTypes.node.isRequired).isRequired
+interface IProps {
+  options: string[]
 }
 
-export default withStyles(theme => ({
-  chip: { margin: theme.spacing.unit }
-}))(Options)
+export default decorate<IProps>(({ classes, options }) => (
+  <Fragment>
+    {options.map(option => (
+      <Chip key={option} className={classes.chip} label={option} />
+    ))}
+  </Fragment>
+))
