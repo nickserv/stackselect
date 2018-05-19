@@ -12,7 +12,8 @@ import {
 } from '@material-ui/core'
 import React, { ChangeEvent, Component, Fragment } from 'react'
 import Options from './Options'
-import quizzes, { IQuestion } from './quizzes'
+import { IQuestion, IQuiz } from './quizzes'
+import quizzes from './quizzes.json'
 
 const decorate = withStyles(theme => ({
   stepper: { backgroundColor: theme.palette.background.default },
@@ -39,7 +40,7 @@ class Quiz extends Component<AllProps, IState> {
 
   constructor(props: AllProps) {
     super(props)
-    const quiz = quizzes.find(
+    const quiz = (quizzes as IQuiz[]).find(
       currentQuiz => currentQuiz.name === this.props.match.params.name
     )
     if (!quiz) {

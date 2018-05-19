@@ -8,7 +8,8 @@ import {
 import React, { Fragment } from 'react'
 import { Link, LinkProps } from 'react-router-dom'
 import Options from './Options'
-import quizzes, { IQuestion } from './quizzes'
+import { IQuestion, IQuiz } from './quizzes'
+import quizzes from './quizzes.json'
 
 const flatten = <T extends any>(array: T[][]): T[] =>
   ([] as T[]).concat(...array)
@@ -23,7 +24,7 @@ const getOptions = (questions: IQuestion[]): string[] =>
 export default function Home() {
   return (
     <List subheader={<ListSubheader>Quizzes</ListSubheader>}>
-      {quizzes.map(({ description, name, questions }) => {
+      {(quizzes as IQuiz[]).map(({ description, name, questions }) => {
         const linkProps: LinkProps = { to: name }
 
         return (
