@@ -15,8 +15,11 @@ const unique = array => Array.from(new Set(array))
 
 const getOptions = questions =>
   unique(
-    flatten(questions.map(({ options }) => flatten(Object.values(options))))
-  ).sort()
+    questions.reduce(
+      (memo, { options }) => [...memo, ...flatten(Object.values(options))],
+      []
+    )
+  )
 
 export default () => (
   <List subheader={<ListSubheader>Quizzes</ListSubheader>}>

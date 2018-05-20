@@ -25,7 +25,7 @@ class Quiz extends Component {
     }).isRequired
   }
 
-  questions = quizzes.find(quiz => quiz.name === this.props.match.params.name)
+  questions = quizzes.find(({ name }) => name === this.props.match.params.name)
     .questions
 
   state = { step: 0, steps: new Array(this.questions.length) }
