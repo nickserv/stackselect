@@ -12,6 +12,7 @@ import {
 import PropTypes from 'prop-types'
 import React, { Component, Fragment } from 'react'
 import Options from './Options'
+import getOptions from './getOptions'
 import quizzes from './quizzes'
 
 class Quiz extends Component {
@@ -44,6 +45,8 @@ class Quiz extends Component {
         <Typography variant="title" className={title}>
           {name}
         </Typography>
+
+        <Options options={getOptions(this.questions)} />
 
         <Stepper
           orientation="vertical"

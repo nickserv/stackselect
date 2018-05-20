@@ -8,18 +8,8 @@ import {
 import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import Options from './Options'
+import getOptions from './getOptions'
 import quizzes from './quizzes'
-
-const flatten = array => [].concat(...array)
-const unique = array => Array.from(new Set(array))
-
-const getOptions = questions =>
-  unique(
-    questions.reduce(
-      (memo, { options }) => [...memo, ...flatten(Object.values(options))],
-      []
-    )
-  )
 
 export default () => (
   <List subheader={<ListSubheader>Quizzes</ListSubheader>}>
