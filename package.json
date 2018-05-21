@@ -16,7 +16,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "ajv -s src/quizzesSchema.json -d src/quizzes.json",
+    "test": "ajv -s src/quizzes.schema.json -d src/quizzes.json",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
