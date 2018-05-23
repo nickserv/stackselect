@@ -1,5 +1,5 @@
-const flatten = array => [].concat(...array)
-const unique = array => Array.from(new Set(array))
+export const flatten = array => [].concat(...array)
+export const unique = array => Array.from(new Set(array))
 
 export default questions =>
   unique(
@@ -7,4 +7,4 @@ export default questions =>
       (memo, { options }) => [...memo, ...flatten(Object.values(options))],
       []
     )
-  )
+  ).sort()
