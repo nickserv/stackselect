@@ -5,7 +5,7 @@ import quizzes from './quizzes'
 
 afterEach(cleanup)
 
-test('Quiz', async () => {
+test('Quiz', () => {
   const quiz = quizzes[0]
   const { getByText } = renderIntoDocument(
     <Quiz match={{ params: { name: quiz.name } }} />
