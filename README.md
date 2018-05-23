@@ -1,4 +1,4 @@
-# StackSelect
+# [StackSelect](https://nickmccurdy.com/stackselect/)
 
 [![Build Status](https://travis-ci.org/nickmccurdy/stackselect.svg?branch=master)](https://travis-ci.org/nickmccurdy/stackselect)
 
