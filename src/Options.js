@@ -2,8 +2,11 @@ import { Chip, withStyles } from '@material-ui/core'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-const Options = ({ classes: { chip }, options }) =>
-  options.map(option => <Chip key={option} className={chip} label={option} />)
+function Options({ classes: { chip }, options }) {
+  return options.map(option => (
+    <Chip key={option} className={chip} label={option} />
+  ))
+}
 
 Options.propTypes = {
   classes: PropTypes.shape({ chip: PropTypes.string.isRequired }).isRequired,

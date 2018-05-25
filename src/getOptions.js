@@ -1,10 +1,16 @@
-export const flatten = array => [].concat(...array)
-export const unique = array => Array.from(new Set(array))
+export function flatten(array) {
+  return [].concat(...array)
+}
 
-export default questions =>
-  unique(
+export function unique(array) {
+  return Array.from(new Set(array))
+}
+
+export default function getOptions(questions) {
+  return unique(
     questions.reduce(
       (memo, { options }) => [...memo, ...flatten(Object.values(options))],
       []
     )
   ).sort()
+}
