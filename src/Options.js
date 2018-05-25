@@ -10,7 +10,7 @@ function Options({ classes: { chip }, options }) {
 
 Options.propTypes = {
   classes: PropTypes.shape({ chip: PropTypes.string.isRequired }).isRequired,
-  options: PropTypes.arrayOf(PropTypes.node.isRequired).isRequired
+  options: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired
 }
 
 export default withStyles(theme => ({

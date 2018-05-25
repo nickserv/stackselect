@@ -31,6 +31,17 @@ class Quiz extends Component {
 
   state = { step: 0, steps: new Array(this.questions.length) }
 
+  handleStep = index => this.setState({ step: index })
+
+  handleSteps = (index, { target: { value } }) =>
+    this.setState(state => ({
+      steps: [
+        ...state.steps.slice(0, index),
+        value,
+        ...state.steps.slice(index + 1)
+      ]
+    }))
+
   render() {
     const {
       classes: { stepper, title },
@@ -54,23 +65,15 @@ class Quiz extends Component {
           activeStep={step}
           nonLinear
         >
-          {this.questions.map(({ name, options }, step) => (
-            <Step key={name}>
-              <StepButton onClick={() => this.setState({ step })}>
-                {name}
+          {this.questions.map(({ name: questionName, options }, index) => (
+            <Step key={questionName}>
+              <StepButton onClick={this.handleStep.bind(null, index)}>
+                {questionName}
               </StepButton>
 
               <StepContent>
                 <RadioGroup
-                  onChange={({ target: { value } }) =>
-                    this.setState(({ steps }) => ({
-                      steps: [
-                        ...steps.slice(0, step),
-                        value,
-                        ...steps.slice(step + 1)
-                      ]
-                    }))
-                  }
+                  onChange={this.handleSteps.bind(null, index)}
                   value={steps[step]}
                 >
                   {Object.entries(options).map(([option, technologies]) => (
