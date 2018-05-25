@@ -26,20 +26,13 @@ class Quiz extends Component {
     }).isRequired
   }
 
-  questions = quizzes.find(({ name }) => name === this.props.match.params.name)
-    .questions
+  state = { steps: {} }
 
-  state = { step: 0, steps: new Array(this.questions.length) }
+  handleStep = name => this.setState({ step: name })
 
-  handleStep = index => this.setState({ step: index })
-
-  handleSteps = (index, { target: { value } }) =>
-    this.setState(state => ({
-      steps: [
-        ...state.steps.slice(0, index),
-        value,
-        ...state.steps.slice(index + 1)
-      ]
+  handleSteps = (name, { target: { value } }) =>
+    this.setState(({ steps }) => ({
+      steps: { ...steps, [name]: value }
     }))
 
   render() {
@@ -51,30 +44,36 @@ class Quiz extends Component {
     } = this.props
     const { step, steps } = this.state
 
+    const questions = quizzes.find(quiz => quiz.name === name).questions
+
+    const questionIndex = questions.findIndex(
+      ({ name: questionName }) => questionName === step
+    )
+
     return (
       <Fragment>
         <Typography variant="title" className={title}>
           {name}
         </Typography>
 
-        <Options options={getOptions(this.questions)} />
+        <Options options={getOptions(questions)} />
 
         <Stepper
           orientation="vertical"
           className={stepper}
-          activeStep={step}
+          activeStep={questionIndex === -1 ? 0 : questionIndex}
           nonLinear
         >
-          {this.questions.map(({ name: questionName, options }, index) => (
+          {questions.map(({ name: questionName, options }) => (
             <Step key={questionName}>
-              <StepButton onClick={this.handleStep.bind(null, index)}>
+              <StepButton onClick={this.handleStep.bind(null, questionName)}>
                 {questionName}
               </StepButton>
 
               <StepContent>
                 <RadioGroup
-                  onChange={this.handleSteps.bind(null, index)}
-                  value={steps[step]}
+                  onChange={this.handleSteps.bind(null, questionName)}
+                  value={steps[questionName]}
                 >
                   {Object.entries(options).map(([option, technologies]) => (
                     <FormControlLabel
