@@ -56,7 +56,7 @@ class Quiz extends Component {
           {name}
         </Typography>
 
-        <Options options={getOptions(questions)} />
+        <Options options={getOptions(questions, steps)} />
 
         <Stepper
           orientation="vertical"

@@ -23,6 +23,14 @@ test('getOptions', () => {
     'Vue',
     'Web Components'
   ])
+  expect(getOptions(questions, {})).toEqual([
+    'Angular',
+    'None',
+    'Polymer',
+    'React',
+    'Vue',
+    'Web Components'
+  ])
   expect(
     getOptions(questions, {
       'What architecture do you want to follow?': 'MVC'

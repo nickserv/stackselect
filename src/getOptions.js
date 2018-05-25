@@ -6,8 +6,8 @@ export function unique(array) {
   return Array.from(new Set(array))
 }
 
-export default function getOptions(questions, answers) {
-  return (answers
+export default function getOptions(questions, answers = {}) {
+  return (Object.keys(answers).length
     ? Object.entries(answers)
         .map(
           ([question, answer]) =>
