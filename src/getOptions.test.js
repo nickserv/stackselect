@@ -14,7 +14,8 @@ test('unique', () => {
 })
 
 test('getOptions', () => {
-  expect(getOptions(quizzes[0].questions)).toEqual([
+  const questions = quizzes[0].questions
+  expect(getOptions(questions)).toEqual([
     'Angular',
     'None',
     'Polymer',
@@ -22,4 +23,35 @@ test('getOptions', () => {
     'Vue',
     'Web Components'
   ])
+  expect(
+    getOptions(questions, {
+      'What architecture do you want to follow?': 'MVC'
+    })
+  ).toEqual(['Angular'])
+  expect(
+    getOptions(questions, {
+      'What platforms do you need to support other than frontend web?':
+        'Server side rendering'
+    })
+  ).toEqual(['React'])
+  expect(
+    getOptions(questions, {
+      'What architecture do you want to follow?': 'Component driven',
+      'What platforms do you need to support other than frontend web?':
+        'Server side rendering'
+    })
+  ).toEqual(['React'])
+  expect(
+    getOptions(questions, {
+      'What architecture do you want to follow?': 'Component driven',
+      'What platforms do you need to support other than frontend web?': 'Native'
+    })
+  ).toEqual(['React', 'Vue'])
+  expect(
+    getOptions(questions, {
+      'What architecture do you want to follow?': 'None',
+      'What platforms do you need to support other than frontend web?':
+        'Server side rendering'
+    })
+  ).toEqual([])
 })
