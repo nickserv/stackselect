@@ -1,16 +1,35 @@
-import { AppBar, CssBaseline, Toolbar, Typography } from '@material-ui/core'
+import {
+  AppBar,
+  CssBaseline,
+  IconButton,
+  Toolbar,
+  Typography,
+  withStyles
+} from '@material-ui/core'
+import { Home as HomeIcon } from '@material-ui/icons'
+import PropTypes from 'prop-types'
 import React, { Fragment } from 'react'
-import { Route } from 'react-router-dom'
+import { Link, Route } from 'react-router-dom'
 import Home from './Home'
 import Quiz from './Quiz'
 
-export default function App() {
+function App({ classes: { homeButton } }) {
   return (
     <Fragment>
       <CssBaseline />
 
       <AppBar position="static">
         <Toolbar>
+          <IconButton
+            className={homeButton}
+            color="inherit"
+            aria-label="Home"
+            component={Link}
+            to="/"
+          >
+            <HomeIcon />
+          </IconButton>
+
           <Typography variant="headline" color="inherit">
             StackSelect
           </Typography>
@@ -22,3 +41,16 @@ export default function App() {
     </Fragment>
   )
 }
+
+App.propTypes = {
+  classes: PropTypes.shape({
+    homeButton: PropTypes.string.isRequired
+  }).isRequired
+}
+
+export default withStyles({
+  homeButton: {
+    marginLeft: -12,
+    marginRight: 20
+  }
+})(App)
