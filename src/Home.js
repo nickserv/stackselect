@@ -17,7 +17,11 @@ export default function Home() {
       {quizzes.map(({ description, name, questions }) => (
         <ListItem key={name} button component={Link} to={name}>
           <ListItemText
-            primary={<Typography variant="subheading">{name}</Typography>}
+            primary={
+              <Typography variant="subheading" component="span">
+                {name}
+              </Typography>
+            }
             secondary={
               <Fragment>
                 <Typography color="textSecondary">{description}</Typography>
