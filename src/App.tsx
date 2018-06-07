@@ -41,7 +41,7 @@ function App({ classes: { homeButton } }: WithStyles<'homeButton'>) {
         </Toolbar>
       </AppBar>
 
-      <Route exact={true} path="/" component={Home} />
+      <Route exact path="/" component={Home} />
       <Route path="/:name" component={Quiz} />
     </Fragment>
   )

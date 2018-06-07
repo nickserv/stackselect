@@ -18,9 +18,9 @@ import quizzes, { IQuiz } from './quizzes'
 const decorate = withStyles(theme => ({
   stepper: { backgroundColor: theme.palette.background.default },
   title: theme.mixins.gutters({
-    marginTop: theme.spacing.unit * 3,
+    paddingTop: 16,
     paddingBottom: 16,
-    paddingTop: 16
+    marginTop: theme.spacing.unit * 3
   })
 }))
 
@@ -36,9 +36,19 @@ interface IState {
 }
 
 class Quiz extends Component<AllProps, IState> {
-  public state = { step: undefined, steps: {} }
+  state = { step: undefined, steps: {} }
 
-  public render() {
+  handleStep = (name: string) => this.setState({ step: name })
+
+  handleSteps = (
+    name: string,
+    { target: { value } }: ChangeEvent<{ value: string }>
+  ) =>
+    this.setState(({ steps }) => ({
+      steps: { ...steps, [name]: value }
+    }))
+
+  render() {
     const {
       classes: { stepper, title },
       match: {
@@ -70,7 +80,7 @@ class Quiz extends Component<AllProps, IState> {
           orientation="vertical"
           className={stepper}
           activeStep={questionIndex === -1 ? 0 : questionIndex}
-          nonLinear={true}
+          nonLinear
         >
           {questions.map(({ name: questionName, options }) => (
             <Step key={questionName}>
@@ -103,16 +113,6 @@ class Quiz extends Component<AllProps, IState> {
       </Fragment>
     )
   }
-
-  private handleStep = (name: string) => this.setState({ step: name })
-
-  private handleSteps = (
-    name: string,
-    { target: { value } }: ChangeEvent<{ value: string }>
-  ) =>
-    this.setState(({ steps }) => ({
-      steps: { ...steps, [name]: value }
-    }))
 }
 
 export default decorate(Quiz)

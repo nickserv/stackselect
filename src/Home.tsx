@@ -18,7 +18,7 @@ export default function Home() {
         const NameLink = (props: any) => <Link to={name} {...props} />
 
         return (
-          <ListItem key={name} button={true} component={NameLink}>
+          <ListItem key={name} button component={NameLink}>
             <ListItemText
               primary={
                 <Typography variant="subheading" component="span">
@@ -31,7 +31,7 @@ export default function Home() {
                   <Options options={getOptions(questions)} />
                 </Fragment>
               }
-              disableTypography={true}
+              disableTypography
             />
           </ListItem>
         )
