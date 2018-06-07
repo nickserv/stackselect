@@ -7,19 +7,9 @@ import {
 } from '@material-ui/core'
 import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
+import getOptions from './getOptions'
 import Options from './Options'
-import { IQuestion, IQuiz } from './quizzes'
-import quizzes from './quizzes.json'
-
-const flatten = <T extends any>(array: T[][]): T[] =>
-  ([] as T[]).concat(...array)
-
-const unique = <T extends any>(array: T[]): T[] => Array.from(new Set(array))
-
-const getOptions = (questions: IQuestion[]): string[] =>
-  unique(
-    flatten(questions.map(({ options }) => flatten(Object.values(options))))
-  ).sort()
+import quizzes, { IQuiz } from './quizzes'
 
 export default function Home() {
   return (
@@ -30,7 +20,11 @@ export default function Home() {
         return (
           <ListItem key={name} button={true} component={NameLink}>
             <ListItemText
-              primary={<Typography variant="subheading">{name}</Typography>}
+              primary={
+                <Typography variant="subheading" component="span">
+                  {name}
+                </Typography>
+              }
               secondary={
                 <Fragment>
                   <Typography color="textSecondary">{description}</Typography>
