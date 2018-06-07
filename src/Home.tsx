@@ -6,7 +6,7 @@ import {
   Typography
 } from '@material-ui/core'
 import React, { Fragment } from 'react'
-import { Link, LinkProps } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Options from './Options'
 import { IQuestion, IQuiz } from './quizzes'
 import quizzes from './quizzes.json'
@@ -25,15 +25,10 @@ export default function Home() {
   return (
     <List subheader={<ListSubheader>Quizzes</ListSubheader>}>
       {(quizzes as IQuiz[]).map(({ description, name, questions }) => {
-        const linkProps: LinkProps = { to: name }
+        const NameLink = (props: any) => <Link to={name} {...props} />
 
         return (
-          <ListItem
-            key={name}
-            button={true}
-            component={Link}
-            {...linkProps as any}
-          >
+          <ListItem key={name} button={true} component={NameLink}>
             <ListItemText
               primary={<Typography variant="subheading">{name}</Typography>}
               secondary={
