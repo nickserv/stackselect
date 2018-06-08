@@ -1,11 +1,16 @@
 import { Chip, withStyles } from '@material-ui/core'
 import PropTypes from 'prop-types'
 import React from 'react'
+import FlipMove from 'react-flip-move'
 
 function Options({ classes: { chip }, options }) {
-  return options.map(option => (
-    <Chip key={option} className={chip} label={option} />
-  ))
+  return (
+    <FlipMove typeName="span">
+      {options.map(option => (
+        <Chip key={option} className={chip} label={option} />
+      ))}
+    </FlipMove>
+  )
 }
 
 Options.propTypes = {
