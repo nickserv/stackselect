@@ -9,12 +9,12 @@ import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import getOptions from './getOptions'
 import Options from './Options'
-import quizzes, { IQuiz } from './quizzes'
+import quizzes from './quizzes'
 
 export default function Home() {
   return (
     <List subheader={<ListSubheader>Quizzes</ListSubheader>}>
-      {(quizzes as IQuiz[]).map(({ description, name, questions }) => {
+      {quizzes.map(({ description, name, questions }) => {
         const NameLink = (props: any) => <Link to={name} {...props} />
 
         return (

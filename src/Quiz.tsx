@@ -13,7 +13,7 @@ import {
 import React, { ChangeEvent, Component, Fragment } from 'react'
 import getOptions from './getOptions'
 import Options from './Options'
-import quizzes, { IQuiz } from './quizzes'
+import quizzes from './quizzes'
 
 const decorate = withStyles(theme => ({
   stepper: { backgroundColor: theme.palette.background.default },
@@ -57,9 +57,7 @@ class Quiz extends Component<AllProps, IState> {
     } = this.props
     const { step, steps } = this.state
 
-    const quiz = (quizzes as IQuiz[]).find(
-      currentQuiz => currentQuiz.name === name
-    )
+    const quiz = quizzes.find(currentQuiz => currentQuiz.name === name)
     if (!quiz) {
       throw new Error(`Quiz not found: ${name}`)
     }

@@ -12,3 +12,6 @@ export interface IQuiz {
   description: string
   questions: IQuestion[]
 }
+
+declare const quizzes: IQuiz[]
+export default quizzes
