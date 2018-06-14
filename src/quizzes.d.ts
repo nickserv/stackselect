@@ -1,17 +1,17 @@
-interface IOptions {
+interface Options {
   [key: string]: string[]
 }
 
-export interface IQuestion {
+export interface Question {
   name: string
-  options: IOptions
+  options: Options
 }
 
-export interface IQuiz {
+export interface Quiz {
   name: string
   description: string
-  questions: IQuestion[]
+  questions: Question[]
 }
 
-declare const quizzes: IQuiz[]
+declare const quizzes: Quiz[]
 export default quizzes

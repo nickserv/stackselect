@@ -1,4 +1,4 @@
-import { IQuestion } from './quizzes'
+import { Question } from './quizzes'
 
 export function flatten<T extends any>(array: T[][]): T[] {
   return ([] as T[]).concat(...array)
@@ -9,7 +9,7 @@ export function unique<T extends any>(array: T[]): T[] {
 }
 
 export default function getOptions(
-  questions: IQuestion[],
+  questions: Question[],
   answers: { [key: string]: string } = {}
 ): string[] {
   return (Object.keys(answers).length

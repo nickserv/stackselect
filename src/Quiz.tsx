@@ -24,18 +24,18 @@ const decorate = withStyles(theme => ({
   })
 }))
 
-interface IProps {
+interface Props {
   match: { params: { name: string } }
 }
 
-type AllProps = IProps & WithStyles<'stepper' | 'title'>
+type AllProps = Props & WithStyles<'stepper' | 'title'>
 
-interface IState {
+interface State {
   step?: string
   steps: { [key: string]: string }
 }
 
-class Quiz extends Component<AllProps, IState> {
+class Quiz extends Component<AllProps, State> {
   state = { step: undefined, steps: {} }
 
   handleStep = (name: string) => this.setState({ step: name })
