@@ -1,10 +1,10 @@
 import { Question } from './quizzes'
 
-export function flatten<T extends any>(array: T[][]): T[] {
+export function flatten<T>(array: T[][]): T[] {
   return ([] as T[]).concat(...array)
 }
 
-export function unique<T extends any>(array: T[]): T[] {
+export function unique<T>(array: T[]): T[] {
   return Array.from(new Set(array))
 }
 
