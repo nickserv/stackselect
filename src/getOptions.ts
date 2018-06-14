@@ -10,7 +10,7 @@ export function unique<T extends any>(array: T[]): T[] {
 
 export default function getOptions(
   questions: Question[],
-  answers: { [key: string]: string } = {}
+  answers: Record<string, string> = {}
 ): string[] {
   return (Object.keys(answers).length
     ? Object.entries(answers)

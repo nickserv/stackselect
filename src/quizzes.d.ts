@@ -1,6 +1,4 @@
-interface Options {
-  [key: string]: string[]
-}
+type Options = Record<string, string[]>
 
 export interface Question {
   name: string

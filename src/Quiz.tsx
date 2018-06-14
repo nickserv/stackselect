@@ -32,7 +32,7 @@ type AllProps = Props & WithStyles<'stepper' | 'title'>
 
 interface State {
   step?: string
-  steps: { [key: string]: string }
+  steps: Record<string, string>
 }
 
 class Quiz extends Component<AllProps, State> {
