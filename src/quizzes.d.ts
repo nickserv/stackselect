@@ -5,7 +5,7 @@ export interface Question {
   options: Options
 }
 
-export interface Quiz {
+interface Quiz {
   name: string
   description: string
   questions: Question[]
