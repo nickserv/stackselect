@@ -12,9 +12,9 @@ test('Quiz', () => {
   )
   getByText(quiz.name)
   for (const { name } of quiz.questions) getByText(name)
-  Object.keys(quiz.questions[0].options).forEach(getByText)
+  Object.keys(quiz.questions[0].options).forEach(option => getByText(option))
 
   // change questions
   fireEvent.click(getByText(quiz.questions[1].name))
-  Object.keys(quiz.questions[1].options).forEach(getByText)
+  Object.keys(quiz.questions[1].options).forEach(option => getByText(option))
 })

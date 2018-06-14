@@ -12,5 +12,5 @@ test('Options', () => {
     'Web Components'
   ]
   const { getByText } = render(<Options options={options} />)
-  options.forEach(getByText)
+  options.forEach(option => getByText(option))
 })
