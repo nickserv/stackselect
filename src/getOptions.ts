@@ -1,7 +1,7 @@
 import { Question } from './quizzes'
 
 export function flatten<T>(array: T[][]): T[] {
-  return ([] as T[]).concat(...array)
+  return new Array<T>().concat(...array)
 }
 
 export function unique<T>(array: T[]): T[] {
@@ -20,9 +20,9 @@ export default function getOptions(
         )
         .reduce((memo, options) => memo.filter(item => options.includes(item)))
     : unique(
-        questions.reduce(
+        questions.reduce<string[]>(
           (memo, { options }) => [...memo, ...flatten(Object.values(options))],
-          [] as string[]
+          []
         )
       )
   ).sort()
