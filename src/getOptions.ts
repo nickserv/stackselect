@@ -12,18 +12,19 @@ export default function getOptions(
   questions: Question[],
   answers: Record<string, string> = {}
 ): string[] {
-  return (Object.keys(answers).length
-    ? Object.entries(answers)
-        .map(
-          ([question, answer]) =>
-            questions.find(({ name }) => name === question)!.options[answer]
-        )
-        .reduce((memo, options) => memo.filter(item => options.includes(item)))
-    : unique(
-        questions.reduce<string[]>(
-          (memo, { options }) => [...memo, ...flatten(Object.values(options))],
-          []
-        )
-      )
-  ).sort()
+  return questions
+    .reduce((memo: string[], { name, options }) => {
+      if (answers[name]) {
+        const answerOptions = options[answers[name]]
+        return memo.length
+          ? memo.filter(item => answerOptions.includes(item))
+          : answerOptions
+      } else if (!Object.keys(answers).length) {
+        const answerOptions = flatten(Object.values(options))
+        return unique(memo.concat(answerOptions))
+      } else {
+        return memo
+      }
+    }, [])
+    .sort()
 }
