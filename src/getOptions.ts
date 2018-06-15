@@ -19,11 +19,11 @@ export default function getOptions(
         return memo.length
           ? memo.filter(item => answerOptions.includes(item))
           : answerOptions
-      } else if (!Object.keys(answers).length) {
+      } else if (Object.keys(answers).length) {
+        return memo
+      } else {
         const answerOptions = flatten(Object.values(options))
         return unique(memo.concat(answerOptions))
-      } else {
-        return memo
       }
     }, [])
     .sort()
