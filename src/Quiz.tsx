@@ -80,7 +80,7 @@ class Quiz extends Component<AllProps, State> {
           activeStep={questionIndex === -1 ? 0 : questionIndex}
           nonLinear
         >
-          {questions.map(({ name: questionName, options }) => (
+          {questions.map(({ name: questionName, answers }) => (
             <Step key={questionName}>
               <StepButton onClick={this.handleStep.bind(null, questionName)}>
                 {questionName}
@@ -91,16 +91,16 @@ class Quiz extends Component<AllProps, State> {
                   onChange={this.handleSteps.bind(null, questionName)}
                   value={steps[questionName]}
                 >
-                  {Object.entries(options).map(([option, technologies]) => (
+                  {answers.map(({ name, options }) => (
                     <FormControlLabel
-                      key={option}
+                      key={name}
                       control={<Radio />}
                       label={
                         <Fragment>
-                          {option} <Options options={technologies} />
+                          {name} <Options options={options} />
                         </Fragment>
                       }
-                      value={option}
+                      value={name}
                     />
                   ))}
                 </RadioGroup>

@@ -1,8 +1,11 @@
-type Options = Record<string, string[]>
+interface Answer {
+  name: string
+  options: string[]
+}
 
 export interface Question {
   name: string
-  options: Options
+  answers: Answer[]
 }
 
 interface Quiz {

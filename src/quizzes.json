@@ -6,25 +6,22 @@
     "questions": [
       {
         "name": "What architecture do you want to follow?",
-        "options": {
-          "MVC": ["Angular"],
-          "Component driven": [
-            "React",
-            "Polymer",
-            "Angular",
-            "Vue",
-            "Web Components"
-          ],
-          "None": ["None"]
-        }
+        "answers": [
+          { "name": "MVC", "options": ["Angular"] },
+          {
+            "name": "Component driven",
+            "options": ["React", "Polymer", "Angular", "Vue", "Web Components"]
+          },
+          { "name": "None", "options": ["None"] }
+        ]
       },
       {
         "name":
           "What platforms do you need to support other than frontend web?",
-        "options": {
-          "Server side rendering": ["React"],
-          "Native": ["React", "Vue"]
-        }
+        "answers": [
+          { "name": "Server side rendering", "options": ["React"] },
+          { "name": "Native", "options": ["React", "Vue"] }
+        ]
       }
     ]
   }

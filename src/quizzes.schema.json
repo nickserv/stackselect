@@ -11,16 +11,24 @@
           "type": "object",
           "properties": {
             "name": { "type": "string" },
-            "options": {
-              "type": "object",
-              "additionalProperties": {
-                "type": "array",
-                "items": { "type": "string" },
-                "uniqueItems": true
-              }
+            "answers": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" },
+                  "options": {
+                    "type": "array",
+                    "items": { "type": "string" },
+                    "uniqueItems": true
+                  }
+                },
+                "required": ["name", "options"]
+              },
+              "uniqueItems": true
             }
           },
-          "required": ["name", "options"]
+          "required": ["name", "answers"]
         },
         "uniqueItems": true
       }
