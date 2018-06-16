@@ -1,5 +1,5 @@
 import getOptions, { flatten, unique } from './getOptions'
-import quizzes from './quizzes'
+import quizzes from './quizzes.json'
 
 test('flatten', () => {
   expect(flatten([])).toEqual([])

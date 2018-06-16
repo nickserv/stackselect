@@ -9,7 +9,7 @@ import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import getOptions from './getOptions'
 import Options from './Options'
-import quizzes from './quizzes'
+import quizzes from './quizzes.json'
 
 export default function Home() {
   return (

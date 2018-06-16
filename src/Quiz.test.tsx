@@ -1,7 +1,7 @@
 import React from 'react'
 import { cleanup, fireEvent, renderIntoDocument } from 'react-testing-library'
 import Quiz from './Quiz'
-import quizzes from './quizzes'
+import quizzes from './quizzes.json'
 
 afterEach(cleanup)
 

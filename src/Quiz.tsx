@@ -13,7 +13,7 @@ import {
 import React, { ChangeEvent, Component, Fragment } from 'react'
 import getOptions from './getOptions'
 import Options from './Options'
-import quizzes from './quizzes'
+import quizzes from './quizzes.json'
 
 const decorate = withStyles(theme => ({
   stepper: { backgroundColor: theme.palette.background.default },

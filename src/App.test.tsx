@@ -7,7 +7,7 @@ import {
   renderIntoDocument
 } from 'react-testing-library'
 import App from './App'
-import quizzes from './quizzes'
+import quizzes from './quizzes.json'
 
 const description = quizzes[0].description
 

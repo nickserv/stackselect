@@ -3,7 +3,7 @@ import { MemoryRouter } from 'react-router-dom'
 import { render } from 'react-testing-library'
 import getOptions from './getOptions'
 import Home from './Home'
-import quizzes from './quizzes'
+import quizzes from './quizzes.json'
 
 test('Home', () => {
   const { getByText } = render(

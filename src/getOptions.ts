@@ -1,4 +1,4 @@
-import { Question } from './quizzes'
+import quizzes from './quizzes.json'
 
 export function flatten<T>(array: T[][]): T[] {
   return new Array<T>().concat(...array)
@@ -9,7 +9,7 @@ export function unique<T>(array: T[]): T[] {
 }
 
 export default function getOptions(
-  questions: Question[],
+  questions: typeof quizzes[0]['questions'],
   answers: Record<string, string> = {}
 ) {
   return questions
