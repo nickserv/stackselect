@@ -11,7 +11,7 @@ export function unique<T>(array: T[]): T[] {
 export default function getOptions(
   questions: Question[],
   answers: Record<string, string> = {}
-): string[] {
+) {
   return questions
     .reduce((memo: string[], { name, options }) => {
       if (answers[name]) {
