@@ -4,8 +4,7 @@ import {
   IconButton,
   Toolbar,
   Typography,
-  withStyles,
-  WithStyles
+  withStyles
 } from '@material-ui/core'
 import { Home as HomeIcon } from '@material-ui/icons'
 import React, { Fragment } from 'react'
@@ -21,35 +20,30 @@ function HomeIconLink(props: any) {
   )
 }
 
-function App({ classes: { homeButton } }: WithStyles<'homeButton'>) {
-  return (
-    <Fragment>
-      <CssBaseline />
+export default withStyles({ homeButton: { marginLeft: -12, marginRight: 20 } })(
+  function App({ classes: { homeButton } }) {
+    return (
+      <Fragment>
+        <CssBaseline />
 
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            className={homeButton}
-            color="inherit"
-            aria-label="Home"
-            component={HomeIconLink}
-          />
+        <AppBar position="static">
+          <Toolbar>
+            <IconButton
+              className={homeButton}
+              color="inherit"
+              aria-label="Home"
+              component={HomeIconLink}
+            />
 
-          <Typography variant="headline" color="inherit">
-            StackSelect
-          </Typography>
-        </Toolbar>
-      </AppBar>
+            <Typography variant="headline" color="inherit">
+              StackSelect
+            </Typography>
+          </Toolbar>
+        </AppBar>
 
-      <Route exact path="/" component={Home} />
-      <Route path="/:name" component={Quiz} />
-    </Fragment>
-  )
-}
-
-export default withStyles({
-  homeButton: {
-    marginLeft: -12,
-    marginRight: 20
+        <Route exact path="/" component={Home} />
+        <Route path="/:name" component={Quiz} />
+      </Fragment>
+    )
   }
-})(App)
+)

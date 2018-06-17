@@ -1,7 +1,7 @@
 import quizzes from './quizzes.json'
 
 export function flatten<T>(array: T[][]): T[] {
-  return new Array<T>().concat(...array)
+  return new Array().concat(...array)
 }
 
 export function unique<T>(array: T[]): T[] {
@@ -10,7 +10,7 @@ export function unique<T>(array: T[]): T[] {
 
 export default function getOptions(
   questions: typeof quizzes[0]['questions'],
-  answers: Record<string, string> = {}
+  answers = {}
 ) {
   return questions
     .reduce((memo: string[], question) => {

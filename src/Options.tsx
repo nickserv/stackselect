@@ -1,18 +1,13 @@
-import { Chip, withStyles } from '@material-ui/core'
+import { Chip, Theme, withStyles, WithStyles } from '@material-ui/core'
 import React, { Fragment } from 'react'
 
-const decorate = withStyles(theme => ({
-  chip: { margin: theme.spacing.unit }
-}))
+const styles = (theme: Theme) => ({ chip: { margin: theme.spacing.unit } })
 
-interface IProps {
+interface Props extends WithStyles<typeof styles> {
   options: string[]
 }
 
-export default decorate<IProps>(function Options({
-  classes: { chip },
-  options
-}) {
+export default withStyles(styles)(({ classes: { chip }, options }: Props) => {
   return (
     <Fragment>
       {options.map(option => (

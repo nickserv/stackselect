@@ -6,111 +6,106 @@ import {
   StepButton,
   StepContent,
   Stepper,
+  Theme,
   Typography,
-  WithStyles,
-  withStyles
+  withStyles,
+  WithStyles
 } from '@material-ui/core'
-import React, { ChangeEvent, Component, Fragment } from 'react'
+import React, { Component, Fragment } from 'react'
+import { match } from 'react-router-dom'
 import getOptions from './getOptions'
 import Options from './Options'
 import quizzes from './quizzes.json'
 
-const decorate = withStyles(theme => ({
+const styles = (theme: Theme) => ({
   stepper: { backgroundColor: theme.palette.background.default },
   title: theme.mixins.gutters({
     paddingTop: 16,
     paddingBottom: 16,
     marginTop: theme.spacing.unit * 3
   })
-}))
+})
 
-interface Props {
-  match: { params: { name: string } }
+interface Props extends WithStyles<typeof styles> {
+  match: match<{ name: string }>
 }
-
-type AllProps = Props & WithStyles<'stepper' | 'title'>
 
 interface State {
   step?: string
-  steps: Record<string, string>
+  steps: {}
 }
 
-class Quiz extends Component<AllProps, State> {
-  state = { step: undefined, steps: {} }
+export default withStyles(styles)(
+  class Quiz extends Component<Props, State> {
+    state = { step: undefined, steps: {} }
 
-  handleStep = (name: string) => this.setState({ step: name })
+    handleStep = (name: string) => this.setState({ step: name })
 
-  handleSteps = (
-    name: string,
-    { target: { value } }: ChangeEvent<{ value: string }>
-  ) =>
-    this.setState(({ steps }) => ({
-      steps: { ...steps, [name]: value }
-    }))
+    handleSteps = (name: string, event: never, value: string) =>
+      this.setState(({ steps }) => ({
+        steps: { ...steps, [name]: value }
+      }))
 
-  render() {
-    const {
-      classes: { stepper, title },
-      match: {
-        params: { name }
-      }
-    } = this.props
-    const { step, steps } = this.state
+    render() {
+      const {
+        classes: { stepper, title },
+        match: {
+          params: { name }
+        }
+      } = this.props
+      const { step, steps } = this.state
 
-    const quiz = quizzes.find(currentQuiz => currentQuiz.name === name)
-    if (!quiz) {
-      throw new Error(`Quiz not found: ${name}`)
+      const quiz = quizzes.find(quiz => quiz.name === name)
+      if (!quiz) throw new Error(`Quiz not found: ${name}`)
+      const questions = quiz.questions
+      const questionIndex = questions.findIndex(
+        ({ name: questionName }) => questionName === step
+      )
+
+      return (
+        <Fragment>
+          <Typography variant="title" className={title}>
+            {name}
+          </Typography>
+
+          <Options options={getOptions(questions, steps)} />
+
+          <Stepper
+            orientation="vertical"
+            className={stepper}
+            activeStep={questionIndex === -1 ? 0 : questionIndex}
+            nonLinear
+          >
+            {questions.map(({ name: questionName, answers }) => (
+              <Step key={questionName}>
+                <StepButton onClick={this.handleStep.bind(null, questionName)}>
+                  {questionName}
+                </StepButton>
+
+                <StepContent>
+                  <RadioGroup
+                    onChange={this.handleSteps.bind(null, questionName)}
+                    value={steps[questionName]}
+                  >
+                    {answers.map(({ name, options }) => (
+                      <FormControlLabel
+                        key={name}
+                        control={<Radio />}
+                        label={
+                          <Fragment>
+                            {name} <Options options={options} />
+                          </Fragment>
+                        }
+                        value={name}
+                      />
+                    ))}
+                  </RadioGroup>
+                </StepContent>
+              </Step>
+            ))}
+          </Stepper>
+        </Fragment>
+      )
     }
-    const questions = quiz.questions
-    const questionIndex = questions.findIndex(
-      ({ name: questionName }) => questionName === step
-    )
-
-    return (
-      <Fragment>
-        <Typography variant="title" className={title}>
-          {name}
-        </Typography>
-
-        <Options options={getOptions(questions, steps)} />
-
-        <Stepper
-          orientation="vertical"
-          className={stepper}
-          activeStep={questionIndex === -1 ? 0 : questionIndex}
-          nonLinear
-        >
-          {questions.map(({ name: questionName, answers }) => (
-            <Step key={questionName}>
-              <StepButton onClick={this.handleStep.bind(null, questionName)}>
-                {questionName}
-              </StepButton>
-
-              <StepContent>
-                <RadioGroup
-                  onChange={this.handleSteps.bind(null, questionName)}
-                  value={steps[questionName]}
-                >
-                  {answers.map(({ name, options }) => (
-                    <FormControlLabel
-                      key={name}
-                      control={<Radio />}
-                      label={
-                        <Fragment>
-                          {name} <Options options={options} />
-                        </Fragment>
-                      }
-                      value={name}
-                    />
-                  ))}
-                </RadioGroup>
-              </StepContent>
-            </Step>
-          ))}
-        </Stepper>
-      </Fragment>
-    )
   }
-}
-
-export default decorate(Quiz)
+)

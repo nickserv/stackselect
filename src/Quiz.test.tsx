@@ -8,7 +8,14 @@ afterEach(cleanup)
 test('Quiz', () => {
   const quiz = quizzes[0]
   const { getByText } = renderIntoDocument(
-    <Quiz match={{ params: { name: quiz.name } }} />
+    <Quiz
+      match={{
+        isExact: true,
+        params: { name: quiz.name },
+        path: '/:name',
+        url: '/JavaScript Frontend Framework'
+      }}
+    />
   )
   getByText(quiz.name)
   for (const { name } of quiz.questions) getByText(name)
