@@ -6,22 +6,22 @@ import quizzes from './quizzes.json'
 afterEach(cleanup)
 
 test('Quiz', () => {
-  const quiz = quizzes[0]
+  const { name, questions } = quizzes[0]
   const { getByText } = renderIntoDocument(
     <Quiz
       match={{
         isExact: true,
-        params: { name: quiz.name },
+        params: { name },
         path: '/:name',
         url: '/JavaScript Frontend Framework'
       }}
     />
   )
-  getByText(quiz.name)
-  for (const { name } of quiz.questions) getByText(name)
-  for (const { name } of quiz.questions[0].answers) getByText(name)
+  getByText(name)
+  for (const { name } of questions) getByText(name)
+  for (const { name } of questions[0].answers) getByText(name)
 
   // change questions
-  fireEvent.click(getByText(quiz.questions[1].name))
-  for (const { name } of quiz.questions[1].answers) getByText(name)
+  fireEvent.click(getByText(questions[1].name))
+  for (const { name } of questions[1].answers) getByText(name)
 })

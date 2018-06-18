@@ -2,7 +2,7 @@ import { Chip, Theme, withStyles, WithStyles } from '@material-ui/core'
 import React from 'react'
 import FlipMove from 'react-flip-move'
 
-const styles = (theme: Theme) => ({ chip: { margin: theme.spacing.unit } })
+const styles = ({ spacing: { unit } }: Theme) => ({ chip: { margin: unit } })
 
 interface Props extends WithStyles<typeof styles> {
   options: string[]

@@ -17,13 +17,13 @@ import getOptions from './getOptions'
 import Options from './Options'
 import quizzes from './quizzes.json'
 
-const styles = (theme: Theme) => ({
-  stepper: { backgroundColor: theme.palette.background.default },
-  title: theme.mixins.gutters({
-    paddingTop: 16,
-    paddingBottom: 16,
-    marginTop: theme.spacing.unit * 3
-  })
+const styles = ({
+  mixins: { gutters },
+  palette: { background },
+  spacing: { unit }
+}: Theme) => ({
+  stepper: { backgroundColor: background.default },
+  title: gutters({ paddingTop: 16, paddingBottom: 16, marginTop: unit * 3 })
 })
 
 interface Props extends WithStyles<typeof styles> {
@@ -48,19 +48,19 @@ export default withStyles(styles)(
 
     render() {
       const {
-        classes: { stepper, title },
-        match: {
-          params: { name }
-        }
-      } = this.props
-      const { step, steps } = this.state
+        props: {
+          classes: { stepper, title },
+          match: {
+            params: { name }
+          }
+        },
+        state: { step, steps }
+      } = this
 
       const quiz = quizzes.find(quiz => quiz.name === name)
       if (!quiz) throw new Error(`Quiz not found: ${name}`)
       const questions = quiz.questions
-      const questionIndex = questions.findIndex(
-        ({ name: questionName }) => questionName === step
-      )
+      const questionIndex = questions.findIndex(({ name }) => name === step)
 
       return (
         <Fragment>
@@ -76,16 +76,16 @@ export default withStyles(styles)(
             activeStep={questionIndex === -1 ? 0 : questionIndex}
             nonLinear
           >
-            {questions.map(({ name: questionName, answers }) => (
-              <Step key={questionName}>
-                <StepButton onClick={this.handleStep.bind(null, questionName)}>
-                  {questionName}
+            {questions.map(({ name, answers }) => (
+              <Step key={name}>
+                <StepButton onClick={this.handleStep.bind(null, name)}>
+                  {name}
                 </StepButton>
 
                 <StepContent>
                   <RadioGroup
-                    onChange={this.handleSteps.bind(null, questionName)}
-                    value={steps[questionName]}
+                    onChange={this.handleSteps.bind(null, name)}
+                    value={steps[name]}
                   >
                     {answers.map(({ name, options }) => (
                       <FormControlLabel
