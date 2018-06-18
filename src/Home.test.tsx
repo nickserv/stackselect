@@ -14,5 +14,5 @@ test('Home', () => {
   const quiz = quizzes[0]
   getByText(quiz.name)
   getByText(quiz.description)
-  getOptions(quiz.questions).forEach(option => getByText(option))
+  for (const option of getOptions(quiz.questions)) getByText(option)
 })
