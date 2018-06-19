@@ -1,13 +1,11 @@
 import React from 'react'
-import { cleanup, fireEvent, renderIntoDocument } from 'react-testing-library'
+import { fireEvent, render } from 'react-testing-library'
 import Quiz from './Quiz'
 import quizzes from './quizzes.json'
 
-afterEach(cleanup)
-
 test('Quiz', () => {
   const { name, questions } = quizzes[0]
-  const { getByText } = renderIntoDocument(
+  const { getByText } = render(
     <Quiz
       match={{
         isExact: true,

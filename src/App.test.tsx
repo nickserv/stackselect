@@ -1,17 +1,10 @@
 import React from 'react'
 import { MemoryRouter } from 'react-router-dom'
-import {
-  cleanup,
-  fireEvent,
-  render,
-  renderIntoDocument
-} from 'react-testing-library'
+import { fireEvent, render } from 'react-testing-library'
 import App from './App'
 import quizzes from './quizzes.json'
 
 const description = quizzes[0].description
-
-afterEach(cleanup)
 
 test('Home', () => {
   const { getByText } = render(
@@ -24,7 +17,7 @@ test('Home', () => {
 })
 
 test('Quiz', () => {
-  const { getByLabelText, getByText, queryByText } = renderIntoDocument(
+  const { getByLabelText, getByText, queryByText } = render(
     <MemoryRouter initialEntries={[description]}>
       <App />
     </MemoryRouter>
