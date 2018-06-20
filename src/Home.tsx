@@ -5,7 +5,7 @@ import {
   ListSubheader,
   Typography
 } from '@material-ui/core'
-import React, { Fragment } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import getOptions from './getOptions'
 import Options from './Options'
@@ -26,10 +26,10 @@ export default function Home() {
                 </Typography>
               }
               secondary={
-                <Fragment>
+                <>
                   <Typography color="textSecondary">{description}</Typography>
                   <Options options={getOptions(questions)} />
-                </Fragment>
+                </>
               }
               disableTypography
             />

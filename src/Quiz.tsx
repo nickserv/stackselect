@@ -11,7 +11,7 @@ import {
   withStyles,
   WithStyles
 } from '@material-ui/core'
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { match } from 'react-router-dom'
 import getOptions from './getOptions'
 import Options from './Options'
@@ -63,7 +63,7 @@ export default withStyles(styles)(
       const questionIndex = questions.findIndex(({ name }) => name === step)
 
       return (
-        <Fragment>
+        <>
           <Typography variant="title" className={title}>
             {name}
           </Typography>
@@ -92,9 +92,9 @@ export default withStyles(styles)(
                         key={name}
                         control={<Radio />}
                         label={
-                          <Fragment>
+                          <>
                             {name} <Options options={options} />
-                          </Fragment>
+                          </>
                         }
                         value={name}
                       />
@@ -104,7 +104,7 @@ export default withStyles(styles)(
               </Step>
             ))}
           </Stepper>
-        </Fragment>
+        </>
       )
     }
   }

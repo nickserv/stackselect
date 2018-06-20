@@ -7,7 +7,7 @@ import {
   withStyles
 } from '@material-ui/core'
 import { Home as HomeIcon } from '@material-ui/icons'
-import React, { Fragment } from 'react'
+import React from 'react'
 import { Link, Route } from 'react-router-dom'
 import Home from './Home'
 import Quiz from './Quiz'
@@ -23,7 +23,7 @@ function HomeIconLink(props: any) {
 export default withStyles({ homeButton: { marginLeft: -12, marginRight: 20 } })(
   function App({ classes: { homeButton } }) {
     return (
-      <Fragment>
+      <>
         <CssBaseline />
 
         <AppBar position="static">
@@ -43,7 +43,7 @@ export default withStyles({ homeButton: { marginLeft: -12, marginRight: 20 } })(
 
         <Route exact path="/" component={Home} />
         <Route path="/:name" component={Quiz} />
-      </Fragment>
+      </>
     )
   }
 )
