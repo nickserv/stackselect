@@ -12,14 +12,6 @@ import { Link, Route } from 'react-router-dom'
 import Home from './Home'
 import Quiz from './Quiz'
 
-function HomeIconLink(props: any) {
-  return (
-    <Link to="/" {...props}>
-      <HomeIcon />
-    </Link>
-  )
-}
-
 export default withStyles({ homeButton: { marginLeft: -12, marginRight: 20 } })(
   function App({ classes: { homeButton } }) {
     return (
@@ -32,7 +24,11 @@ export default withStyles({ homeButton: { marginLeft: -12, marginRight: 20 } })(
               className={homeButton}
               color="inherit"
               aria-label="Home"
-              component={HomeIconLink}
+              component={(props: any) => (
+                <Link to="/" {...props}>
+                  <HomeIcon />
+                </Link>
+              )}
             />
 
             <Typography variant="headline" color="inherit">

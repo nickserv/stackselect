@@ -14,28 +14,28 @@ import quizzes from './quizzes.json'
 export default function Home() {
   return (
     <List subheader={<ListSubheader>Quizzes</ListSubheader>}>
-      {quizzes.map(({ description, name, questions }) => {
-        const NameLink = (props: any) => <Link to={name} {...props} />
-
-        return (
-          <ListItem key={name} button component={NameLink}>
-            <ListItemText
-              primary={
-                <Typography variant="subheading" component="span">
-                  {name}
-                </Typography>
-              }
-              secondary={
-                <>
-                  <Typography color="textSecondary">{description}</Typography>
-                  <Options options={getOptions(questions)} />
-                </>
-              }
-              disableTypography
-            />
-          </ListItem>
-        )
-      })}
+      {quizzes.map(({ description, name, questions }) => (
+        <ListItem
+          key={name}
+          button
+          component={(props: any) => <Link to={name} {...props} />}
+        >
+          <ListItemText
+            primary={
+              <Typography variant="subheading" component="span">
+                {name}
+              </Typography>
+            }
+            secondary={
+              <>
+                <Typography color="textSecondary">{description}</Typography>
+                <Options options={getOptions(questions)} />
+              </>
+            }
+            disableTypography
+          />
+        </ListItem>
+      ))}
     </List>
   )
 }
