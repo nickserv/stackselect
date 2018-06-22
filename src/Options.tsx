@@ -8,12 +8,10 @@ interface Props extends WithStyles<typeof styles> {
   options: string[]
 }
 
-export default withStyles(styles)(({ classes: { chip }, options }: Props) => {
-  return (
-    <FlipMove typeName="span">
-      {options.map(option => (
-        <Chip key={option} className={chip} label={option} />
-      ))}
-    </FlipMove>
-  )
-})
+export default withStyles(styles)(({ classes: { chip }, options }: Props) => (
+  <FlipMove typeName="span">
+    {options.map(option => (
+      <Chip key={option} className={chip} label={option} />
+    ))}
+  </FlipMove>
+))
