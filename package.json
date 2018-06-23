@@ -24,6 +24,13 @@
     "eject": "react-scripts-ts eject"
   },
   "homepage": ".",
+  "jest": {
+    "collectCoverageFrom": [
+      "**/*.{ts,tsx}",
+      "!src/index.tsx",
+      "!src/registerServiceWorker.ts"
+    ]
+  },
   "prettier": {
     "semi": false,
     "singleQuote": true
