@@ -1,3 +1,4 @@
+import 'jest-dom/extend-expect'
 import React from 'react'
 import { MemoryRouter } from 'react-router-dom'
 import { fireEvent, render } from 'react-testing-library'
@@ -7,22 +8,22 @@ import quizzes from './quizzes.json'
 const description = quizzes[0].description
 
 test('Home', () => {
-  const { getByText } = render(
+  const { container } = render(
     <MemoryRouter>
       <App />
     </MemoryRouter>
   )
-  getByText('StackSelect')
-  getByText(description)
+  expect(container).toHaveTextContent('StackSelect')
+  expect(container).toHaveTextContent(description)
 })
 
 test('Quiz', () => {
-  const { getByLabelText, getByText, queryByText } = render(
+  const { container, getByLabelText } = render(
     <MemoryRouter initialEntries={[description]}>
       <App />
     </MemoryRouter>
   )
-  expect(queryByText(description)).toBeNull()
+  expect(container).not.toHaveTextContent(description)
   fireEvent.click(getByLabelText('Home'))
-  getByText(description)
+  expect(container).toHaveTextContent(description)
 })

@@ -1,3 +1,4 @@
+import 'jest-dom/extend-expect'
 import React from 'react'
 import { MemoryRouter } from 'react-router-dom'
 import { render } from 'react-testing-library'
@@ -6,13 +7,14 @@ import Home from './Home'
 import quizzes from './quizzes.json'
 
 test('Home', () => {
-  const { getByText } = render(
+  const { container } = render(
     <MemoryRouter>
       <Home />
     </MemoryRouter>
   )
   const quiz = quizzes[0]
-  getByText(quiz.name)
-  getByText(quiz.description)
-  for (const option of getOptions(quiz.questions)) getByText(option)
+  expect(container).toHaveTextContent(quiz.name)
+  expect(container).toHaveTextContent(quiz.description)
+  for (const option of getOptions(quiz.questions))
+    expect(container).toHaveTextContent(option)
 })

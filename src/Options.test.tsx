@@ -1,3 +1,4 @@
+import 'jest-dom/extend-expect'
 import React from 'react'
 import { render } from 'react-testing-library'
 import Options from './Options'
@@ -11,6 +12,6 @@ test('Options', () => {
     'Vue',
     'Web Components'
   ]
-  const { getByText } = render(<Options options={options} />)
-  for (const option of options) getByText(option)
+  const { container } = render(<Options options={options} />)
+  for (const option of options) expect(container).toHaveTextContent(option)
 })
