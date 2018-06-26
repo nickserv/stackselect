@@ -1,5 +1,3 @@
-import quizzes from './quizzes.json'
-
 export function flatten<T>(array: T[][]): T[] {
   return new Array().concat(...array)
 }
@@ -8,10 +6,17 @@ export function unique<T>(array: T[]): T[] {
   return Array.from(new Set(array))
 }
 
-export default function getOptions(
-  questions: typeof quizzes[0]['questions'],
-  answers = {}
-) {
+interface Answer {
+  name: string
+  options: string[]
+}
+
+interface Question {
+  name: string
+  answers: Answer[]
+}
+
+export default function getOptions(questions: Question[], answers = {}) {
   return questions
     .reduce((memo: string[], question) => {
       const answer = question.answers.find(
