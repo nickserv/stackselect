@@ -48,6 +48,8 @@ export default withStyles(styles)(
 
     render() {
       const {
+        handleStep,
+        handleSteps,
         props: {
           classes: { stepper, title },
           match: {
@@ -78,13 +80,13 @@ export default withStyles(styles)(
           >
             {questions.map(({ name, answers }) => (
               <Step key={name}>
-                <StepButton onClick={this.handleStep.bind(null, name)}>
+                <StepButton onClick={handleStep.bind(null, name)}>
                   {name}
                 </StepButton>
 
                 <StepContent>
                   <RadioGroup
-                    onChange={this.handleSteps.bind(null, name)}
+                    onChange={handleSteps.bind(null, name)}
                     value={steps[name]}
                   >
                     {answers.map(({ name, options }) => (
