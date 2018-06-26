@@ -31,16 +31,16 @@ interface Props extends WithStyles<typeof styles> {
 }
 
 interface State {
-  activeQuestion?: string
+  activeStep: number
   answers: Record<string, string>
 }
 
 export default withStyles(styles)(
   class Quiz extends Component<Props, State> {
-    state = { activeQuestion: undefined, answers: {} }
+    state = { activeStep: 0, answers: {} }
 
-    handleActiveQuestion = (activeQuestion: string) => () =>
-      this.setState({ activeQuestion })
+    handleActiveStep = (activeStep: number) => () =>
+      this.setState({ activeStep })
 
     handleAnswer = (question: string) => (
       event: ChangeEvent<{}>,
@@ -52,7 +52,7 @@ export default withStyles(styles)(
 
     render() {
       const {
-        handleActiveQuestion,
+        handleActiveStep,
         handleAnswer,
         props: {
           classes: { stepper, title },
@@ -60,15 +60,12 @@ export default withStyles(styles)(
             params: { name }
           }
         },
-        state: { activeQuestion, answers }
+        state: { activeStep, answers }
       } = this
 
       const quiz = quizzes.find(quiz => quiz.name === name)
       if (!quiz) throw new Error(`Quiz not found: ${name}`)
       const questions = quiz.questions
-      const activeQuestionIndex = questions.findIndex(
-        ({ name }) => name === activeQuestion
-      )
 
       return (
         <>
@@ -81,12 +78,12 @@ export default withStyles(styles)(
           <Stepper
             orientation="vertical"
             className={stepper}
-            activeStep={activeQuestionIndex === -1 ? 0 : activeQuestionIndex}
+            activeStep={activeStep}
             nonLinear
           >
-            {questions.map(question => (
+            {questions.map((question, index) => (
               <Step key={question.name}>
-                <StepButton onClick={handleActiveQuestion(question.name)}>
+                <StepButton onClick={handleActiveStep(index)}>
                   {question.name}
                 </StepButton>
 
