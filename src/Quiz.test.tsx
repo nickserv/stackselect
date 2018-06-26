@@ -8,21 +8,22 @@ beforeEach(() => (console.error = jest.fn()))
 afterEach(jest.restoreAllMocks)
 
 test('Quiz', () => {
-  const { name, questions } = quizzes[0]
+  const quiz = quizzes[0]
   const { container, getByText } = render(
     <Quiz
       match={{
         isExact: true,
-        params: { name },
+        params: { name: quiz.name },
         path: '/:name',
         url: '/JavaScript Frontend Framework'
       }}
     />
   )
-  expect(container).toHaveTextContent(name)
-  for (const { name } of questions) expect(container).toHaveTextContent(name)
-  for (const { name } of questions[0].answers)
-    expect(container).toHaveTextContent(name)
+  expect(container).toHaveTextContent(quiz.name)
+  for (const question of quiz.questions)
+    expect(container).toHaveTextContent(question.name)
+  for (const question of quiz.questions[0].answers)
+    expect(container).toHaveTextContent(question.name)
 
   // select an option
   const option = container.querySelector('input[value=MVC]') as HTMLInputElement
@@ -31,9 +32,9 @@ test('Quiz', () => {
   expect(option).toHaveProperty('checked', true)
 
   // change questions
-  fireEvent.click(getByText(questions[1].name))
-  for (const { name } of questions[1].answers)
-    expect(container).toHaveTextContent(name)
+  fireEvent.click(getByText(quiz.questions[1].name))
+  for (const answer of quiz.questions[1].answers)
+    expect(container).toHaveTextContent(answer.name)
 })
 
 test('invalid Quiz', () => {

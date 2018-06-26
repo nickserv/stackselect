@@ -31,38 +31,41 @@ interface Props extends WithStyles<typeof styles> {
 }
 
 interface State {
-  step?: string
-  steps: {}
+  activeQuestion?: string
+  answers: {}
 }
 
 export default withStyles(styles)(
   class Quiz extends Component<Props, State> {
-    state = { step: undefined, steps: {} }
+    state = { activeQuestion: undefined, answers: {} }
 
-    handleStep = (name: string) => this.setState({ step: name })
+    handleActiveQuestion = (activeQuestion: string) =>
+      this.setState({ activeQuestion })
 
-    handleSteps = (name: string, event: never, value: string) =>
-      this.setState(({ steps }) => ({
-        steps: { ...steps, [name]: value }
+    handleAnswer = (question: string, event: never, answer: string) =>
+      this.setState(({ answers }) => ({
+        answers: { ...answers, [question]: answer }
       }))
 
     render() {
       const {
-        handleStep,
-        handleSteps,
+        handleActiveQuestion,
+        handleAnswer,
         props: {
           classes: { stepper, title },
           match: {
             params: { name }
           }
         },
-        state: { step, steps }
+        state: { activeQuestion, answers }
       } = this
 
       const quiz = quizzes.find(quiz => quiz.name === name)
       if (!quiz) throw new Error(`Quiz not found: ${name}`)
       const questions = quiz.questions
-      const questionIndex = questions.findIndex(({ name }) => name === step)
+      const activeQuestionIndex = questions.findIndex(
+        ({ name }) => name === activeQuestion
+      )
 
       return (
         <>
@@ -70,35 +73,37 @@ export default withStyles(styles)(
             {name}
           </Typography>
 
-          <Options options={getOptions(questions, steps)} />
+          <Options options={getOptions(questions, answers)} />
 
           <Stepper
             orientation="vertical"
             className={stepper}
-            activeStep={questionIndex === -1 ? 0 : questionIndex}
+            activeStep={activeQuestionIndex === -1 ? 0 : activeQuestionIndex}
             nonLinear
           >
-            {questions.map(({ name, answers }) => (
-              <Step key={name}>
-                <StepButton onClick={handleStep.bind(null, name)}>
-                  {name}
+            {questions.map(question => (
+              <Step key={question.name}>
+                <StepButton
+                  onClick={handleActiveQuestion.bind(null, question.name)}
+                >
+                  {question.name}
                 </StepButton>
 
                 <StepContent>
                   <RadioGroup
-                    onChange={handleSteps.bind(null, name)}
-                    value={steps[name]}
+                    onChange={handleAnswer.bind(null, question.name)}
+                    value={answers[question.name]}
                   >
-                    {answers.map(({ name, options }) => (
+                    {question.answers.map(answer => (
                       <FormControlLabel
-                        key={name}
+                        key={answer.name}
                         control={<Radio />}
                         label={
                           <>
-                            {name} <Options options={options} />
+                            {answer.name} <Options options={answer.options} />
                           </>
                         }
-                        value={name}
+                        value={answer.name}
                       />
                     ))}
                   </RadioGroup>
