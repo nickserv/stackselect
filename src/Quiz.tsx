@@ -11,7 +11,7 @@ import {
   withStyles,
   WithStyles
 } from '@material-ui/core'
-import React, { Component } from 'react'
+import React, { ChangeEvent, Component } from 'react'
 import { match } from 'react-router-dom'
 import getOptions from './getOptions'
 import Options from './Options'
@@ -39,10 +39,13 @@ export default withStyles(styles)(
   class Quiz extends Component<Props, State> {
     state = { activeQuestion: undefined, answers: {} }
 
-    handleActiveQuestion = (activeQuestion: string) =>
+    handleActiveQuestion = (activeQuestion: string) => () =>
       this.setState({ activeQuestion })
 
-    handleAnswer = (question: string, event: never, answer: string) =>
+    handleAnswer = (question: string) => (
+      event: ChangeEvent<{}>,
+      answer: string
+    ) =>
       this.setState(({ answers }) => ({
         answers: { ...answers, [question]: answer }
       }))
@@ -83,15 +86,13 @@ export default withStyles(styles)(
           >
             {questions.map(question => (
               <Step key={question.name}>
-                <StepButton
-                  onClick={handleActiveQuestion.bind(null, question.name)}
-                >
+                <StepButton onClick={handleActiveQuestion(question.name)}>
                   {question.name}
                 </StepButton>
 
                 <StepContent>
                   <RadioGroup
-                    onChange={handleAnswer.bind(null, question.name)}
+                    onChange={handleAnswer(question.name)}
                     value={answers[question.name]}
                   >
                     {question.answers.map(answer => (
