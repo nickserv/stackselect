@@ -32,7 +32,7 @@ interface Props extends WithStyles<typeof styles> {
 
 interface State {
   activeQuestion?: string
-  answers: {}
+  answers: Record<string, string>
 }
 
 export default withStyles(styles)(

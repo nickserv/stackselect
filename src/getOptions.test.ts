@@ -55,5 +55,6 @@ each([
     []
   ]
 ]).test('getOptions', (answers, expected) => {
+  //@ts-ignore https://github.com/DefinitelyTyped/DefinitelyTyped/pull/26836
   expect(getOptions(questions, answers)).toEqual(expected)
 })

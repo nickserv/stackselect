@@ -16,7 +16,10 @@ interface Question {
   answers: Answer[]
 }
 
-export default function getOptions(questions: Question[], answers = {}) {
+export default function getOptions(
+  questions: Question[],
+  answers: Record<string, string> = {}
+) {
   return questions
     .reduce((memo: string[], question) => {
       const answer = question.answers.find(

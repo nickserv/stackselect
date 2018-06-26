@@ -26,7 +26,7 @@ test('Quiz', () => {
     expect(container).toHaveTextContent(question.name)
 
   // select an option
-  const option = container.querySelector('input[value=MVC]') as HTMLInputElement
+  const option = container.querySelector<HTMLElement>('input[value=MVC]')!
   expect(option).toHaveProperty('checked', false)
   fireEvent.click(option)
   expect(option).toHaveProperty('checked', true)
