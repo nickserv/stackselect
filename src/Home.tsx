@@ -1,10 +1,4 @@
-import {
-  List,
-  ListItem,
-  ListItemText,
-  ListSubheader,
-  Typography
-} from '@material-ui/core'
+import { List, ListItem, ListItemText, ListSubheader } from '@material-ui/core'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import getOptions from './getOptions'
@@ -21,18 +15,14 @@ export default function Home() {
           component={(props: any) => <Link to={name} {...props} />}
         >
           <ListItemText
-            primary={
-              <Typography variant="subheading" component="span">
-                {name}
-              </Typography>
-            }
+            primary={name}
             secondary={
               <>
-                <Typography color="textSecondary">{description}</Typography>
+                {description}
+                <br />
                 <Options options={getOptions(questions)} />
               </>
             }
-            disableTypography
           />
         </ListItem>
       ))}

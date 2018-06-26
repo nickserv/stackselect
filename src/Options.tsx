@@ -11,7 +11,7 @@ interface Props extends WithStyles<typeof styles> {
 export default withStyles(styles)(({ classes: { chip }, options }: Props) => (
   <FlipMove typeName="span">
     {options.map(option => (
-      <Chip key={option} className={chip} label={option} />
+      <Chip key={option} className={chip} label={option} component="span" />
     ))}
   </FlipMove>
 ))
