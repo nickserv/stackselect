@@ -22,8 +22,8 @@ test('Quiz', () => {
   expect(container).toHaveTextContent(quiz.name)
   for (const question of quiz.questions)
     expect(container).toHaveTextContent(question.name)
-  for (const question of quiz.questions[0].answers)
-    expect(container).toHaveTextContent(question.name)
+  for (const answer of quiz.questions[0].answers)
+    expect(container).toHaveTextContent(answer.name)
 
   // select an option
   const option = container.querySelector<HTMLElement>('input[value=MVC]')!
