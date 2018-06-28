@@ -5,7 +5,6 @@ import quizzes from './quizzes.json'
 each([[[], []], [[[1, 2]], [1, 2]], [[[1, 2], [3, 4]], [1, 2, 3, 4]]]).test(
   'flatten',
   (array, expected) => {
-    //@ts-ignore https://github.com/DefinitelyTyped/DefinitelyTyped/pull/26836
     expect(flatten(array)).toEqual(expected)
   }
 )
@@ -13,7 +12,6 @@ each([[[], []], [[[1, 2]], [1, 2]], [[[1, 2], [3, 4]], [1, 2, 3, 4]]]).test(
 each([[[], []], [[1, 2, 3], [1, 2, 3]], [[1, 2, 2, 3], [1, 2, 3]]]).test(
   'unique',
   (array, expected) => {
-    //@ts-ignore https://github.com/DefinitelyTyped/DefinitelyTyped/pull/26836
     expect(unique(array)).toEqual(expected)
   }
 )
@@ -55,6 +53,5 @@ each([
     []
   ]
 ]).test('getOptions', (answers, expected) => {
-  //@ts-ignore https://github.com/DefinitelyTyped/DefinitelyTyped/pull/26836
   expect(getOptions(questions, answers)).toEqual(expected)
 })
