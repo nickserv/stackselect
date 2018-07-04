@@ -1,11 +1,9 @@
 import {
+  FormControl,
   FormControlLabel,
+  FormLabel,
   Radio,
   RadioGroup,
-  Step,
-  StepButton,
-  StepContent,
-  Stepper,
   Theme,
   Typography,
   withStyles,
@@ -17,14 +15,9 @@ import getOptions from './getOptions'
 import Options from './Options'
 import quizzes from './quizzes.json'
 
-const styles = ({
-  mixins: { gutters },
-  palette: { background },
-  spacing: { unit }
-}: Theme) => ({
-  options: gutters(),
-  stepper: { backgroundColor: background.default },
-  title: gutters({ paddingTop: 16, paddingBottom: 16, marginTop: unit * 3 })
+const styles = ({ mixins: { gutters }, spacing: { unit } }: Theme) => ({
+  root: gutters(),
+  title: { paddingTop: 16, paddingBottom: 16, marginTop: unit * 3 }
 })
 
 interface Props extends WithStyles<typeof styles> {
@@ -32,16 +25,12 @@ interface Props extends WithStyles<typeof styles> {
 }
 
 interface State {
-  activeStep: number
   answers: Record<string, string>
 }
 
 export default withStyles(styles)(
   class Quiz extends Component<Props, State> {
-    state = { activeStep: 0, answers: {} }
-
-    handleActiveStep = (activeStep: number) => () =>
-      this.setState({ activeStep })
+    state = { answers: {} }
 
     handleAnswer = (question: string) => (
       event: ChangeEvent<{}>,
@@ -53,15 +42,14 @@ export default withStyles(styles)(
 
     render() {
       const {
-        handleActiveStep,
         handleAnswer,
         props: {
-          classes: { options, stepper, title },
+          classes: { root, title },
           match: {
             params: { name }
           }
         },
-        state: { activeStep, answers }
+        state: { answers }
       } = this
 
       const quiz = quizzes.find(quiz => quiz.name === name)
@@ -69,51 +57,37 @@ export default withStyles(styles)(
       const questions = quiz.questions
 
       return (
-        <>
+        <form className={root}>
           <Typography variant="title" className={title}>
             {name}
           </Typography>
 
-          <Options
-            options={getOptions(questions, answers)}
-            className={options}
-          />
+          <Options options={getOptions(questions, answers)} />
 
-          <Stepper
-            orientation="vertical"
-            className={stepper}
-            activeStep={activeStep}
-            nonLinear
-          >
-            {questions.map((question, index) => (
-              <Step key={question.name}>
-                <StepButton onClick={handleActiveStep(index)}>
-                  {question.name}
-                </StepButton>
+          {questions.map(question => (
+            <FormControl key={question.name} component="fieldset" fullWidth>
+              <FormLabel component="legend">{question.name}</FormLabel>
 
-                <StepContent>
-                  <RadioGroup
-                    onChange={handleAnswer(question.name)}
-                    value={answers[question.name]}
-                  >
-                    {question.answers.map(answer => (
-                      <FormControlLabel
-                        key={answer.name}
-                        control={<Radio />}
-                        label={
-                          <>
-                            {answer.name} <Options options={answer.options} />
-                          </>
-                        }
-                        value={answer.name}
-                      />
-                    ))}
-                  </RadioGroup>
-                </StepContent>
-              </Step>
-            ))}
-          </Stepper>
-        </>
+              <RadioGroup
+                onChange={handleAnswer(question.name)}
+                value={answers[question.name]}
+              >
+                {question.answers.map(answer => (
+                  <FormControlLabel
+                    key={answer.name}
+                    control={<Radio />}
+                    label={
+                      <>
+                        {answer.name} <Options options={answer.options} />
+                      </>
+                    }
+                    value={answer.name}
+                  />
+                ))}
+              </RadioGroup>
+            </FormControl>
+          ))}
+        </form>
       )
     }
   }
