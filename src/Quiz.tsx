@@ -22,6 +22,7 @@ const styles = ({
   palette: { background },
   spacing: { unit }
 }: Theme) => ({
+  options: gutters(),
   stepper: { backgroundColor: background.default },
   title: gutters({ paddingTop: 16, paddingBottom: 16, marginTop: unit * 3 })
 })
@@ -55,7 +56,7 @@ export default withStyles(styles)(
         handleActiveStep,
         handleAnswer,
         props: {
-          classes: { stepper, title },
+          classes: { options, stepper, title },
           match: {
             params: { name }
           }
@@ -73,7 +74,10 @@ export default withStyles(styles)(
             {name}
           </Typography>
 
-          <Options options={getOptions(questions, answers)} />
+          <Options
+            options={getOptions(questions, answers)}
+            className={options}
+          />
 
           <Stepper
             orientation="vertical"
