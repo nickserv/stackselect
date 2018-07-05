@@ -17,6 +17,8 @@ import quizzes from './quizzes.json'
 
 const styles = ({ mixins: { gutters }, spacing: { unit } }: Theme) => ({
   root: gutters(),
+  formControl: { marginTop: unit * 3 },
+  group: { marginTop: unit },
   title: { paddingTop: 16, paddingBottom: 16, marginTop: unit * 3 }
 })
 
@@ -44,7 +46,7 @@ export default withStyles(styles)(
       const {
         handleAnswer,
         props: {
-          classes: { root, title },
+          classes: { root, formControl, group, title },
           match: {
             params: { name }
           }
@@ -65,10 +67,16 @@ export default withStyles(styles)(
           <Options options={getOptions(questions, answers)} />
 
           {questions.map(question => (
-            <FormControl key={question.name} component="fieldset" fullWidth>
+            <FormControl
+              key={question.name}
+              component="fieldset"
+              className={formControl}
+              fullWidth
+            >
               <FormLabel component="legend">{question.name}</FormLabel>
 
               <RadioGroup
+                className={group}
                 onChange={handleAnswer(question.name)}
                 value={answers[question.name]}
               >
