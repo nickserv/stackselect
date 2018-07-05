@@ -1,3 +1,5 @@
+import { createMuiTheme } from '@material-ui/core'
+import { ThemeProvider } from 'emotion-theming'
 import 'jest-dom/extend-expect'
 import React from 'react'
 import { fireEvent, render } from 'react-testing-library'
@@ -10,14 +12,16 @@ afterEach(jest.restoreAllMocks)
 test('Quiz', () => {
   const quiz = quizzes[0]
   const { container } = render(
-    <Quiz
-      match={{
-        isExact: true,
-        params: { name: quiz.name },
-        path: '/:name',
-        url: '/JavaScript Frontend Framework'
-      }}
-    />
+    <ThemeProvider theme={createMuiTheme()}>
+      <Quiz
+        match={{
+          isExact: true,
+          params: { name: quiz.name },
+          path: '/:name',
+          url: '/JavaScript Frontend Framework'
+        }}
+      />
+    </ThemeProvider>
   )
   expect(container).toHaveTextContent(quiz.name)
   for (const question of quiz.questions) {
@@ -37,14 +41,16 @@ test('Quiz', () => {
 test('invalid Quiz', () => {
   expect(() =>
     render(
-      <Quiz
-        match={{
-          isExact: true,
-          params: { name: 'Invalid' },
-          path: '/:name',
-          url: '/Invalid'
-        }}
-      />
+      <ThemeProvider theme={createMuiTheme()}>
+        <Quiz
+          match={{
+            isExact: true,
+            params: { name: 'Invalid' },
+            path: '/:name',
+            url: '/Invalid'
+          }}
+        />
+      </ThemeProvider>
     )
   ).toThrow('Quiz not found: Invalid')
 })

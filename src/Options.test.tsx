@@ -1,3 +1,5 @@
+import createMuiTheme from '@material-ui/core/styles/createMuiTheme'
+import { ThemeProvider } from 'emotion-theming'
 import 'jest-dom/extend-expect'
 import React from 'react'
 import { render } from 'react-testing-library'
@@ -12,6 +14,10 @@ test('Options', () => {
     'Vue',
     'Web Components'
   ]
-  const { container } = render(<Options labels={labels} />)
+  const { container } = render(
+    <ThemeProvider theme={createMuiTheme()}>
+      <Options labels={labels} />
+    </ThemeProvider>
+  )
   for (const label of labels) expect(container).toHaveTextContent(label)
 })

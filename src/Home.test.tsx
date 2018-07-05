@@ -1,3 +1,5 @@
+import { createMuiTheme } from '@material-ui/core'
+import { ThemeProvider } from 'emotion-theming'
 import 'jest-dom/extend-expect'
 import React from 'react'
 import { MemoryRouter } from 'react-router-dom'
@@ -9,7 +11,9 @@ import quizzes from './quizzes.json'
 test('Home', () => {
   const { container } = render(
     <MemoryRouter>
-      <Home />
+      <ThemeProvider theme={createMuiTheme()}>
+        <Home />
+      </ThemeProvider>
     </MemoryRouter>
   )
   const quiz = quizzes[0]
