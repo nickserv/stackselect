@@ -3,43 +3,46 @@ import {
   CssBaseline,
   IconButton,
   Toolbar,
-  Typography,
-  withStyles
+  Typography
 } from '@material-ui/core'
+import { IconButtonProps } from '@material-ui/core/IconButton'
 import { Home as HomeIcon } from '@material-ui/icons'
-import React from 'react'
+import React, { ComponentClass } from 'react'
+import styled from 'react-emotion'
 import { Link, Route } from 'react-router-dom'
 import Home from './Home'
 import Quiz from './Quiz'
 
-export default withStyles({ homeButton: { marginLeft: -12, marginRight: 20 } })(
-  function App({ classes: { homeButton } }) {
-    return (
-      <>
-        <CssBaseline />
+const StyledIconButton = styled(IconButton as ComponentClass<IconButtonProps>)`
+  margin-left: -12px;
+  margin-right: 20px;
+`
 
-        <AppBar position="static">
-          <Toolbar>
-            <IconButton
-              className={homeButton}
-              color="inherit"
-              aria-label="Home"
-              component={(props: any) => (
-                <Link to="/" {...props}>
-                  <HomeIcon />
-                </Link>
-              )}
-            />
+export default function App() {
+  return (
+    <>
+      <CssBaseline />
 
-            <Typography variant="headline" color="inherit">
-              StackSelect
-            </Typography>
-          </Toolbar>
-        </AppBar>
+      <AppBar position="static">
+        <Toolbar>
+          <StyledIconButton
+            color="inherit"
+            aria-label="Home"
+            component={(props: any) => (
+              <Link to="/" {...props}>
+                <HomeIcon />
+              </Link>
+            )}
+          />
 
-        <Route exact path="/" component={Home} />
-        <Route path="/:name" component={Quiz} />
-      </>
-    )
-  }
-)
+          <Typography variant="headline" color="inherit">
+            StackSelect
+          </Typography>
+        </Toolbar>
+      </AppBar>
+
+      <Route exact path="/" component={Home} />
+      <Route path="/:name" component={Quiz} />
+    </>
+  )
+}
