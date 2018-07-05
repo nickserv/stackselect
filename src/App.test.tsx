@@ -1,3 +1,5 @@
+import { createMuiTheme } from '@material-ui/core'
+import { ThemeProvider } from 'emotion-theming'
 import 'jest-dom/extend-expect'
 import React from 'react'
 import { MemoryRouter } from 'react-router-dom'
@@ -10,7 +12,9 @@ const description = quizzes[0].description
 test('Home', () => {
   const { container } = render(
     <MemoryRouter>
-      <App />
+      <ThemeProvider theme={createMuiTheme()}>
+        <App />
+      </ThemeProvider>
     </MemoryRouter>
   )
   expect(container).toHaveTextContent('StackSelect')
@@ -20,7 +24,9 @@ test('Home', () => {
 test('Quiz', () => {
   const { container, getByLabelText } = render(
     <MemoryRouter initialEntries={[description]}>
-      <App />
+      <ThemeProvider theme={createMuiTheme()}>
+        <App />
+      </ThemeProvider>
     </MemoryRouter>
   )
   expect(container).not.toHaveTextContent(description)
