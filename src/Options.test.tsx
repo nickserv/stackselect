@@ -4,7 +4,7 @@ import { render } from 'react-testing-library'
 import Options from './Options'
 
 test('Options', () => {
-  const options = [
+  const labels = [
     'Angular',
     'None',
     'Polymer',
@@ -12,6 +12,6 @@ test('Options', () => {
     'Vue',
     'Web Components'
   ]
-  const { container } = render(<Options options={options} />)
-  for (const option of options) expect(container).toHaveTextContent(option)
+  const { container } = render(<Options labels={labels} />)
+  for (const label of labels) expect(container).toHaveTextContent(label)
 })

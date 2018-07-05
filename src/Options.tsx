@@ -5,13 +5,13 @@ import FlipMove from 'react-flip-move'
 const styles = ({ spacing: { unit } }: Theme) => ({ chip: { margin: unit } })
 
 interface Props extends WithStyles<typeof styles> {
-  options: string[]
+  labels: string[]
 }
 
-export default withStyles(styles)(({ classes: { chip }, options }: Props) => (
+export default withStyles(styles)(({ classes: { chip }, labels }: Props) => (
   <FlipMove typeName="span">
-    {options.map(option => (
-      <Chip key={option} className={chip} label={option} component="span" />
+    {labels.map(label => (
+      <Chip key={label} className={chip} label={label} component="span" />
     ))}
   </FlipMove>
 ))

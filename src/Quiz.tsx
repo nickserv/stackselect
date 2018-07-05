@@ -64,7 +64,7 @@ export default withStyles(styles)(
             {name}
           </Typography>
 
-          <Options options={getOptions(questions, answers)} />
+          <Options labels={getOptions(questions, answers)} />
 
           {questions.map(question => (
             <FormControl
@@ -86,7 +86,7 @@ export default withStyles(styles)(
                     control={<Radio />}
                     label={
                       <>
-                        {answer.name} <Options options={answer.options} />
+                        {answer.name} <Options labels={answer.options} />
                       </>
                     }
                     value={answer.name}

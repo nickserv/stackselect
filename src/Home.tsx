@@ -20,7 +20,7 @@ export default function Home() {
               <>
                 {description}
                 <br />
-                <Options options={getOptions(questions)} />
+                <Options labels={getOptions(questions)} />
               </>
             }
           />
