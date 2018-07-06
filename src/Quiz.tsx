@@ -86,7 +86,8 @@ export default withStyles(styles)(
                     control={<Radio />}
                     label={
                       <>
-                        {answer.name} <Options labels={answer.options} />
+                        {answer.name}
+                        <Options labels={answer.options} />
                       </>
                     }
                     value={answer.name}
