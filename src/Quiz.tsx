@@ -83,7 +83,8 @@ export default class Quiz extends Component<Props, State> {
                   control={<Radio />}
                   label={
                     <>
-                      {answer.name} <Options labels={answer.options} />
+                      {answer.name}
+                      <Options labels={answer.options} />
                     </>
                   }
                   value={answer.name}
