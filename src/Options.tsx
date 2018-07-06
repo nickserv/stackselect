@@ -1,10 +1,9 @@
 import { Chip } from '@material-ui/core'
-import { ChipProps } from '@material-ui/core/Chip'
-import React, { ComponentClass } from 'react'
+import React from 'react'
 import styled from 'react-emotion'
 import FlipMove from 'react-flip-move'
 
-const StyledChip = styled(Chip as ComponentClass<ChipProps>)`
+const StyledChip = styled(Chip)`
   margin: ${props => props.theme.spacing.unit}px;
 `
 

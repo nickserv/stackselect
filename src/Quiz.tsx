@@ -6,10 +6,7 @@ import {
   RadioGroup,
   Typography
 } from '@material-ui/core'
-import { FormControlProps } from '@material-ui/core/FormControl'
-import { RadioGroupProps } from '@material-ui/core/RadioGroup'
-import { TypographyProps } from '@material-ui/core/Typography'
-import React, { ChangeEvent, Component, ComponentClass } from 'react'
+import React, { ChangeEvent, Component } from 'react'
 import styled from 'react-emotion'
 import { match } from 'react-router-dom'
 import getOptions from './getOptions'
@@ -18,17 +15,15 @@ import quizzes from './quizzes.json'
 
 const Form = styled('form')(props => props.theme.mixins.gutters())
 
-const StyledFormControl = styled(FormControl as ComponentClass<
-  FormControlProps
->)`
+const StyledFormControl = styled(FormControl)`
   margin-top: ${props => props.theme.spacing.unit * 3}px;
 `
 
-const StyledRadioGroup = styled(RadioGroup as ComponentClass<RadioGroupProps>)`
+const StyledRadioGroup = styled(RadioGroup)`
   margin-top: ${props => props.theme.spacing.unit}px;
 `
 
-const StyledTypography = styled(Typography as ComponentClass<TypographyProps>)`
+const StyledTypography = styled(Typography)`
   padding-top: 16px;
   padding-bottom: 16px;
   margin-top: ${props => props.theme.spacing.unit * 3}px;

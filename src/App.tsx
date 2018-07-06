@@ -5,15 +5,14 @@ import {
   Toolbar,
   Typography
 } from '@material-ui/core'
-import { IconButtonProps } from '@material-ui/core/IconButton'
 import { Home as HomeIcon } from '@material-ui/icons'
-import React, { ComponentClass } from 'react'
+import React from 'react'
 import styled from 'react-emotion'
 import { Link, Route } from 'react-router-dom'
 import Home from './Home'
 import Quiz from './Quiz'
 
-const StyledIconButton = styled(IconButton as ComponentClass<IconButtonProps>)`
+const StyledIconButton = styled(IconButton)`
   margin-left: -12px;
   margin-right: 20px;
 `
