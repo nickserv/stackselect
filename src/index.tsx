@@ -9,7 +9,7 @@ import registerServiceWorker from './registerServiceWorker'
 
 ReactDOM.render(
   <HashRouter>
-    <ThemeProvider theme={createMuiTheme()}>
+    <ThemeProvider theme={createMuiTheme}>
       <App />
     </ThemeProvider>
   </HashRouter>,

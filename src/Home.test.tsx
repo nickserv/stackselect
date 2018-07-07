@@ -11,7 +11,7 @@ import quizzes from './quizzes.json'
 test('Home', () => {
   const { container } = render(
     <MemoryRouter>
-      <ThemeProvider theme={createMuiTheme()}>
+      <ThemeProvider theme={createMuiTheme}>
         <Home />
       </ThemeProvider>
     </MemoryRouter>

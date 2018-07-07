@@ -15,7 +15,7 @@ test('Options', () => {
     'Web Components'
   ]
   const { container } = render(
-    <ThemeProvider theme={createMuiTheme()}>
+    <ThemeProvider theme={createMuiTheme}>
       <Options labels={labels} />
     </ThemeProvider>
   )

@@ -12,7 +12,7 @@ const description = quizzes[0].description
 test('Home', () => {
   const { container } = render(
     <MemoryRouter>
-      <ThemeProvider theme={createMuiTheme()}>
+      <ThemeProvider theme={createMuiTheme}>
         <App />
       </ThemeProvider>
     </MemoryRouter>
@@ -24,7 +24,7 @@ test('Home', () => {
 test('Quiz', () => {
   const { container, getByLabelText } = render(
     <MemoryRouter initialEntries={[description]}>
-      <ThemeProvider theme={createMuiTheme()}>
+      <ThemeProvider theme={createMuiTheme}>
         <App />
       </ThemeProvider>
     </MemoryRouter>

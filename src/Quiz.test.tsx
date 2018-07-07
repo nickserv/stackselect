@@ -12,7 +12,7 @@ afterEach(jest.restoreAllMocks)
 test('Quiz', () => {
   const quiz = quizzes[0]
   const { container } = render(
-    <ThemeProvider theme={createMuiTheme()}>
+    <ThemeProvider theme={createMuiTheme}>
       <Quiz
         match={{
           isExact: true,
@@ -41,7 +41,7 @@ test('Quiz', () => {
 test('invalid Quiz', () => {
   expect(() =>
     render(
-      <ThemeProvider theme={createMuiTheme()}>
+      <ThemeProvider theme={createMuiTheme}>
         <Quiz
           match={{
             isExact: true,
