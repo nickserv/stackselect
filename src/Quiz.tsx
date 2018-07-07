@@ -13,7 +13,9 @@ import getOptions from './getOptions'
 import Options from './Options'
 import quizzes from './quizzes.json'
 
-const Form = styled('form')(props => props.theme.mixins.gutters())
+const Form = styled('form')`
+  ${props => props.theme.mixins.gutters()};
+`
 
 const StyledFormControl = styled(FormControl)`
   margin-top: ${props => props.theme.spacing.unit * 3}px;
