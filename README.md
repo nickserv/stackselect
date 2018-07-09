@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/nickmccurdy/stackselect.svg?branch=master)](https://travis-ci.org/nickmccurdy/stackselect)
 
-Simplify your technology decisions with developer-friendly quizzes.
+Simplify technology decisions with developer-friendly quizzes.
 
 ## Goals
 
