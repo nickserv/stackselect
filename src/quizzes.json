@@ -10,8 +10,9 @@
           { "name": "MVC", "options": ["Angular"] },
           {
             "name": "Component driven",
-            "options": ["React", "Polymer", "Angular", "Vue", "Web Components"]
+            "options": ["React", "Angular", "Vue", "Web Components"]
           },
+          { "name": "Service driven", "options": ["Angular"] },
           { "name": "None", "options": ["None"] }
         ]
       },
@@ -21,6 +22,341 @@
         "answers": [
           { "name": "Server side rendering", "options": ["React"] },
           { "name": "Native", "options": ["React", "Vue"] }
+        ]
+      },
+      {
+        "name": "What is your ideal learning curve?",
+        "answers": [
+          {
+            "name":
+              "High levels of strongly typed abstraction with custom framework architecture solutions and a slower learning curve for enterprise use",
+            "options": ["Angular"]
+          },
+          {
+            "name":
+              "Familiar abstractions for functional JavaScript programmers with prior knowledge of language and DOM APIs",
+            "options": ["React"]
+          },
+          {
+            "name":
+              "Easier abstractions with more vendor lock in and less flexibility",
+            "options": ["Vue"]
+          },
+          {
+            "name":
+              "As few abstractions as possible, using plain old web APIs for beginners that want to focus on learning JS so they can learn better architecutres later",
+            "options": ["None"]
+          }
+        ]
+      },
+      {
+        "name": "Open standards or locked in, batteries included abstractions?",
+        "answers": [
+          {
+            "name": "Built into browsers with no dependencies",
+            "options": ["None", "Web Components"]
+          },
+          {
+            "name":
+              "Simple APIs for declaratively rendering to virtual DOM, taking advantage of JS features as much as possible and a modular design",
+            "options": ["React", "Vue"]
+          },
+          {
+            "name":
+              "High levels of abstraction and batteries included framework specific APIs, at the cost of vendor lock in and learning curve",
+            "options": ["Angular", "Ember"]
+          }
+        ]
+      },
+      {
+        "name": "Programming paradigms",
+        "answers": [
+          { "name": "Functional", "options": ["React"] },
+          {
+            "name": "Declarative/Reactive",
+            "options": ["React", "Vue", "Angular"]
+          },
+          { "name": "Imperative", "options": ["None", "Web Components"] }
+        ]
+      },
+      {
+        "name": "Preferred templating system",
+        "answers": [
+          {
+            "name":
+              "None, or separate template libraries (such as Underscore/Lodash)",
+            "options": ["None"]
+          },
+          {
+            "name": "Framework specific templating syntax in HTML files",
+            "options": ["Vue", "Angular"]
+          },
+          {
+            "name":
+              "JSX, a framework agnostic syntax for templating HTML tags in JS files using JS syntax",
+            "options": ["React", "Vue"]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "JavaScript State Manager",
+    "description":
+      "With the modern trend of view specific and component driven frameworks like React and Vue, some more complex applications manage state in separate frameworks called state managers.",
+    "questions": [
+      {
+        "name": "What is your frontend view framework?",
+        "answers": [
+          { "name": "Angular", "options": ["Angular", "Redux"] },
+          { "name": "Polymer", "options": ["Polymer", "Redux"] },
+          { "name": "Web Components", "options": ["Web Components", "Redux"] },
+          { "name": "Ember", "options": ["Ember", "Redux"] },
+          { "name": "React", "options": ["MobX", "React state", "Redux"] },
+          { "name": "Vue", "options": ["MobX", "Redux", "Vue", "Vuex"] }
+        ]
+      },
+      {
+        "name": "Are you new to React/Vue?",
+        "answers": [
+          {
+            "name":
+              "Yes, I want to get a better understanding of state management in my framework itself",
+            "options": ["React state", "Vue"]
+          },
+          {
+            "name":
+              "No, I need more abstraction than what I'm able to achieve with my framework itself",
+            "options": ["MobX", "Redux", "Vuex"]
+          }
+        ]
+      },
+      {
+        "name":
+          "What architecture do you want your application state to follow?",
+        "answers": [
+          {
+            "name":
+              "Flux-like with events/mutations (functional and distributed, views can dispatch events/mutations to stores which can then update the views",
+            "options": ["Redux", "Vuex"]
+          },
+          {
+            "name": "Simplified unidirectional data flow",
+            "options": ["React state"]
+          },
+          { "name": "Object oriented observer pattern", "options": ["MobX"] }
+        ]
+      },
+      {
+        "name": "Should stores be global or component driven?",
+        "answers": [
+          { "name": "Global", "options": ["Redux", "MobX"] },
+          {
+            "name":
+              "Component driven (note that you can make a global store manually with a monolithic top level component, separate state management from presentational components with container components, and use Context to pass data deeply through component trees without manual prop drilling, all without the indirection of a separate state manager)",
+            "options": ["React state"]
+          }
+        ]
+      },
+      {
+        "name":
+          "Should the state manager make it easier to globally serialize, persisting, undo, time travel, or server render application state or actions? Do you want to decouple actions in the application from the state they change? Do you need React components to efficiently rerender based on their dependent data without manually writing time consuming shouldComponentUpdate methods?",
+        "answers": [{ "name": "Yes", "options": ["Redux"] }]
+      }
+    ]
+  },
+  {
+    "name": "React Styling",
+    "description":
+      "There is no single dominant technique to style React apps, your decision depends on if you want to leverage more dynamic or component driven features that aren't present in ordinary CSS.",
+    "questions": [
+      {
+        "name":
+          "Should styles be statically written in separate CSS files (default) or dynamically written in JS files?",
+        "answers": [
+          { "name": "Static", "options": ["CSS", "CSS Modules"] },
+          { "name": "Dynamic", "options": ["CSS in JS"] }
+        ]
+      },
+      {
+        "name":
+          "Should styles be globally scoped (default) or locally scoped to components?",
+        "answers": [
+          { "name": "Global", "options": ["CSS"] },
+          { "name": "Local", "options": ["CSS Modules", "CSS in JS"] }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "JavaScript Build Tool",
+    "description":
+      "Many modern JavaScript applications require build tools for module support, performance optimizations, and additional syntax features.",
+    "questions": [
+      {
+        "name": "What are you developing?",
+        "answers": [
+          { "name": "React app", "options": ["Create React App"] },
+          {
+            "name": "Other app",
+            "options": ["Create React App", "Browserify", "Parcel", "Webpack"]
+          },
+          { "name": "Library", "options": ["Browserify", "Rollup"] }
+        ]
+      },
+      {
+        "name":
+          "Do you want an out of the box zero config development setup or complete control over advanced configuration?",
+        "answers": [
+          {
+            "name": "Zero config",
+            "options": ["Create React App", "Browserify", "Parcel"]
+          },
+          { "name": "Customizable", "options": ["Rollup", "Webpack"] }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Shell",
+    "description":
+      "A shell is an application which runs in a terminal, providing a prompt that can be used to run command line applications and scripting capabilities.",
+    "questions": [
+      {
+        "name": "Can you install a custom shell?",
+        "answers": [
+          { "name": "Yes", "options": ["Zsh", "Fish"] },
+          { "name": "No", "options": ["Bash"] }
+        ]
+      },
+      {
+        "name":
+          "Do you prefer bash compatability or ease of use with great defaults?",
+        "answers": [
+          { "name": "Bash compatability", "options": ["Bash", "Zsh"] },
+          { "name": "Ease of use", "options": ["Fish"] }
+        ]
+      },
+      {
+        "name":
+          "Do you need advanced power user features not offered in Bash? For example: right aligned prompts, advanced globs, prompt themes",
+        "answers": [
+          { "name": "Yes", "options": ["Zsh"] },
+          { "name": "No", "options": ["Bash"] }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Editor",
+    "description":
+      "Choosing a text editor for development is an important decision that impacts feature support, tooling integration, ease of learning technologies, system requirements, and personal productivity.",
+    "questions": [
+      {
+        "name":
+          "Do you want an easy to learn editor, or a very powerful editor with a steeper learning curve that improves long term productivity?",
+        "answers": [
+          {
+            "name": "Easy to learn",
+            "options": ["Atom", "Visual Studio Code"]
+          },
+          { "name": "Powerful", "options": ["Emacs", "Vim"] }
+        ]
+      },
+      {
+        "name":
+          "Do you prefer working in a graphical or command line environment?",
+        "answers": [
+          {
+            "name": "Graphical",
+            "options": ["Atom", "Emacs", "Vim", "Visual Studio Code"]
+          },
+          { "name": "Command Line", "options": ["Vim", "Emacs"] }
+        ]
+      },
+      {
+        "name": "What language do you want to write extensions in?",
+        "answers": [
+          {
+            "name":
+              "JavaScript (or TypeScript natively in Visual Studio Code) and other web technologies",
+            "options": ["Visual Studio Code", "Atom"]
+          },
+          {
+            "name":
+              "Emacs Lisp (easy to learn if you're already familiar with Lisp, with some editor specific features)",
+            "options": ["Emacs Lisp"]
+          },
+          { "name": "VimL (editor specific)", "options": ["Vim"] }
+        ]
+      },
+      {
+        "name":
+          "Do you prefer a basic text editor that can be customized with extensions and scripts, or a more complete, IDE-like environment in a lightweight editor with more web development features enabled by developt?",
+        "answers": [
+          {
+            "name":
+              "Basic (packages like Atom IDE, Nuclide, and CDET can be manually installed to provide more IDE-like features, or you can use a custom Vim/Emacs distribution like Pathogen or SpaceMacs)",
+            "answers": ["Atom", "Emacs", "Vim"]
+          },
+          {
+            "name":
+              "Both: Provide a platform based on a basic editor that can be extended with built in packages to build a custom editor",
+            "answers": ["Emacs", "Vim"]
+          },
+          { "name": "Integrated", "answers": ["Visual Studio Code"] }
+        ]
+      },
+      {
+        "name":
+          "Do you prefer an editor with primarily modal binds that are difficult to learn but very ergonomic?",
+        "answers": [
+          { "name": "Yes", "answers": ["Vim"] },
+          {
+            "name": "No, or I'm ok with installing an extension (such as Evil)",
+            "answers": ["Atom", "Emacs", "Visual Studio Code"]
+          }
+        ]
+      },
+      {
+        "name": "What programs do you need to be built into my editor?",
+        "answers": [
+          {
+            "name":
+              "Everything, I never want to leave my editor! I want a web browser, file browser, IRC client, terminal emulator, and most importantly a dozen videogames",
+            "answers": ["Emacs"]
+          },
+          {
+            "name":
+              "I'm ok using other applications, but I need built in version control and basic file browsering and command line capabilities",
+            "answers": ["Atom", "Visual Studio Code"]
+          },
+          {
+            "name":
+              "My editor is just a small part of my development environment and I want to keep it fast and simple while running separate terminals",
+            "answers": ["Vim"]
+          }
+        ]
+      },
+      {
+        "name":
+          "Do you need to edit files on remote servers from within your editor?",
+        "answers": [
+          {
+            "name":
+              "Yes, I want to run my editor in a command line server remotely over SSH",
+            "options": ["Emacs", "Vim"]
+          },
+          {
+            "name":
+              "Yes, I want it running locally, while remotely performing editor actions on the server using TRAMP",
+            "options": ["Emacs"]
+          },
+          {
+            "name":
+              "No, I'm happy copying files to edit them locally or using my operating system's built in network filesystems",
+            "options": ["Emacs", "Vim", "Atom", "Visual Studio Code"]
+          }
         ]
       }
     ]
