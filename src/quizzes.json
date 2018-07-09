@@ -112,7 +112,7 @@
           { "name": "Polymer", "options": ["Polymer", "Redux"] },
           { "name": "Web Components", "options": ["Web Components", "Redux"] },
           { "name": "Ember", "options": ["Ember", "Redux"] },
-          { "name": "React", "options": ["MobX", "React state", "Redux"] },
+          { "name": "React", "options": ["MobX", "React", "Redux"] },
           { "name": "Vue", "options": ["MobX", "Redux", "Vue", "Vuex"] }
         ]
       },
@@ -122,7 +122,7 @@
           {
             "name":
               "Yes, I want to get a better understanding of state management in my framework itself",
-            "options": ["React state", "Vue"]
+            "options": ["React", "Vue"]
           },
           {
             "name":
@@ -142,7 +142,7 @@
           },
           {
             "name": "Simplified unidirectional data flow",
-            "options": ["React state"]
+            "options": ["React"]
           },
           { "name": "Object oriented observer pattern", "options": ["MobX"] }
         ]
@@ -154,7 +154,7 @@
           {
             "name":
               "Component driven (note that you can make a global store manually with a monolithic top level component, separate state management from presentational components with container components, and use Context to pass data deeply through component trees without manual prop drilling, all without the indirection of a separate state manager)",
-            "options": ["React state"]
+            "options": ["React"]
           }
         ]
       },
@@ -285,7 +285,7 @@
           {
             "name":
               "Emacs Lisp (easy to learn if you're already familiar with Lisp, with some editor specific features)",
-            "options": ["Emacs Lisp"]
+            "options": ["Emacs"]
           },
           { "name": "VimL (editor specific)", "options": ["Vim"] }
         ]
