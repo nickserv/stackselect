@@ -3,73 +3,52 @@ import getOptions, { flatten, unique } from './getOptions'
 
 each([[[], []], [[[1, 2]], [1, 2]], [[[1, 2], [3, 4]], [1, 2, 3, 4]]]).test(
   'flatten',
-  (array, expected) => {
-    expect(flatten(array)).toEqual(expected)
-  }
+  (array, expected) => expect(flatten(array)).toEqual(expected)
 )
 
 each([[[], []], [[1, 2, 3], [1, 2, 3]], [[1, 2, 2, 3], [1, 2, 3]]]).test(
   'unique',
-  (array, expected) => {
-    expect(unique(array)).toEqual(expected)
-  }
+  (array, expected) => expect(unique(array)).toEqual(expected)
 )
 
 const questions = [
   {
-    name: 'What architecture do you want to follow?',
+    name: 'Question 1',
     answers: [
-      { name: 'MVC', options: ['Angular'] },
+      { name: 'Answer 1', options: ['Option 3'] },
       {
-        name: 'Component driven',
-        options: ['React', 'Polymer', 'Angular', 'Vue', 'Web Components']
+        name: 'Answer 2',
+        options: ['Option 1', 'Option 2', 'Option 3', 'Option 4', 'Option 5']
       },
-      { name: 'None', options: ['None'] }
+      { name: 'Answer 3', options: ['Option 6'] }
     ]
   },
   {
-    name: 'What platforms do you need to support other than frontend web?',
+    name: 'Question 2',
     answers: [
-      { name: 'Server side rendering', options: ['React'] },
-      { name: 'Native', options: ['React', 'Vue'] }
+      { name: 'Answer 4', options: ['Option 1'] },
+      { name: 'Answer 5', options: ['Option 1', 'Option 4'] }
     ]
   }
 ]
 
 each([
-  [undefined, ['Angular', 'None', 'Polymer', 'React', 'Vue', 'Web Components']],
-  [{}, ['Angular', 'None', 'Polymer', 'React', 'Vue', 'Web Components']],
-  [{ 'What architecture do you want to follow?': 'MVC' }, ['Angular']],
   [
-    {
-      'What platforms do you need to support other than frontend web?':
-        'Server side rendering'
-    },
-    ['React']
+    undefined,
+    ['Option 1', 'Option 2', 'Option 3', 'Option 4', 'Option 5', 'Option 6']
   ],
   [
-    {
-      'What architecture do you want to follow?': 'Component driven',
-      'What platforms do you need to support other than frontend web?':
-        'Server side rendering'
-    },
-    ['React']
+    {},
+    ['Option 1', 'Option 2', 'Option 3', 'Option 4', 'Option 5', 'Option 6']
   ],
+  [{ 'Question 1': 'Answer 1' }, ['Option 3']],
+  [{ 'Question 2': 'Answer 4' }, ['Option 1']],
+  [{ 'Question 1': 'Answer 2', 'Question 2': 'Answer 4' }, ['Option 1']],
   [
-    {
-      'What architecture do you want to follow?': 'Component driven',
-      'What platforms do you need to support other than frontend web?': 'Native'
-    },
-    ['React', 'Vue']
+    { 'Question 1': 'Answer 2', 'Question 2': 'Answer 5' },
+    ['Option 1', 'Option 4']
   ],
-  [
-    {
-      'What architecture do you want to follow?': 'None',
-      'What platforms do you need to support other than frontend web?':
-        'Server side rendering'
-    },
-    []
-  ]
-]).test('getOptions', (answers, expected) => {
+  [{ 'Question 1': 'Answer 3', 'Question 2': 'Answer 4' }, []]
+]).test('getOptions', (answers, expected) =>
   expect(getOptions(questions, answers)).toEqual(expected)
-})
+)

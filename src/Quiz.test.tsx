@@ -15,7 +15,7 @@ test('Quiz', () => {
         isExact: true,
         params: { name: quiz.name },
         path: '/:name',
-        url: '/JavaScript Frontend Framework'
+        url: `/${quiz.name}`
       }}
     />
   )
@@ -28,13 +28,15 @@ test('Quiz', () => {
   }
 
   // select an option
-  const option = container.querySelector<HTMLElement>('input[value=MVC]')!
+  const option = container.querySelector<HTMLElement>(
+    `input[value='${quiz.questions[0].answers[0].name}']`
+  )!
   expect(option).toHaveProperty('checked', false)
   fireEvent.click(option)
   expect(option).toHaveProperty('checked', true)
 })
 
-test('invalid Quiz', () => {
+test('invalid Quiz', () =>
   expect(() =>
     render(
       <Quiz
@@ -46,5 +48,4 @@ test('invalid Quiz', () => {
         }}
       />
     )
-  ).toThrow('Quiz not found: Invalid')
-})
+  ).toThrow('Quiz not found: Invalid'))

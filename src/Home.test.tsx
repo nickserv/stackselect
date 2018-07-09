@@ -12,9 +12,10 @@ test('Home', () => {
       <Home />
     </MemoryRouter>
   )
-  const quiz = quizzes[0]
-  expect(container).toHaveTextContent(quiz.name)
-  expect(container).toHaveTextContent(quiz.description)
-  for (const option of getOptions(quiz.questions))
-    expect(container).toHaveTextContent(option)
+  for (const quiz of quizzes) {
+    expect(container).toHaveTextContent(quiz.name)
+    expect(container).toHaveTextContent(quiz.description)
+    for (const option of getOptions(quiz.questions))
+      expect(container).toHaveTextContent(option)
+  }
 })
