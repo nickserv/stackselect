@@ -1,6 +1,5 @@
 import each from 'jest-each'
 import getOptions, { flatten, unique } from './getOptions'
-import quizzes from './quizzes.json'
 
 each([[[], []], [[[1, 2]], [1, 2]], [[[1, 2], [3, 4]], [1, 2, 3, 4]]]).test(
   'flatten',
@@ -16,7 +15,26 @@ each([[[], []], [[1, 2, 3], [1, 2, 3]], [[1, 2, 2, 3], [1, 2, 3]]]).test(
   }
 )
 
-const questions = quizzes[0].questions
+const questions = [
+  {
+    name: 'What architecture do you want to follow?',
+    answers: [
+      { name: 'MVC', options: ['Angular'] },
+      {
+        name: 'Component driven',
+        options: ['React', 'Polymer', 'Angular', 'Vue', 'Web Components']
+      },
+      { name: 'None', options: ['None'] }
+    ]
+  },
+  {
+    name: 'What platforms do you need to support other than frontend web?',
+    answers: [
+      { name: 'Server side rendering', options: ['React'] },
+      { name: 'Native', options: ['React', 'Vue'] }
+    ]
+  }
+]
 
 each([
   [undefined, ['Angular', 'None', 'Polymer', 'React', 'Vue', 'Web Components']],
