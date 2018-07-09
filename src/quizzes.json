@@ -297,24 +297,24 @@
           {
             "name":
               "Basic (packages like Atom IDE, Nuclide, and CDET can be manually installed to provide more IDE-like features, or you can use a custom Vim/Emacs distribution like Pathogen or SpaceMacs)",
-            "answers": ["Atom", "Emacs", "Vim"]
+            "options": ["Atom", "Emacs", "Vim"]
           },
           {
             "name":
               "Both: Provide a platform based on a basic editor that can be extended with built in packages to build a custom editor",
-            "answers": ["Emacs", "Vim"]
+            "options": ["Emacs", "Vim"]
           },
-          { "name": "Integrated", "answers": ["Visual Studio Code"] }
+          { "name": "Integrated", "options": ["Visual Studio Code"] }
         ]
       },
       {
         "name":
           "Do you prefer an editor with primarily modal binds that are difficult to learn but very ergonomic?",
         "answers": [
-          { "name": "Yes", "answers": ["Vim"] },
+          { "name": "Yes", "options": ["Vim"] },
           {
             "name": "No, or I'm ok with installing an extension (such as Evil)",
-            "answers": ["Atom", "Emacs", "Visual Studio Code"]
+            "options": ["Atom", "Emacs", "Visual Studio Code"]
           }
         ]
       },
@@ -324,17 +324,17 @@
           {
             "name":
               "Everything, I never want to leave my editor! I want a web browser, file browser, IRC client, terminal emulator, and most importantly a dozen videogames",
-            "answers": ["Emacs"]
+            "options": ["Emacs"]
           },
           {
             "name":
               "I'm ok using other applications, but I need built in version control and basic file browsering and command line capabilities",
-            "answers": ["Atom", "Visual Studio Code"]
+            "options": ["Atom", "Visual Studio Code"]
           },
           {
             "name":
               "My editor is just a small part of my development environment and I want to keep it fast and simple while running separate terminals",
-            "answers": ["Vim"]
+            "options": ["Vim"]
           }
         ]
       },
