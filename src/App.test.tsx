@@ -7,8 +7,6 @@ import { fireEvent, render } from 'react-testing-library'
 import App from './App'
 import quizzes from './quizzes.json'
 
-const description = quizzes[0].description
-
 test('Home', () => {
   const { container } = render(
     <MemoryRouter>
@@ -18,10 +16,12 @@ test('Home', () => {
     </MemoryRouter>
   )
   expect(container).toHaveTextContent('StackSelect')
-  expect(container).toHaveTextContent(description)
+  for (const { description } of quizzes)
+    expect(container).toHaveTextContent(description)
 })
 
 test('Quiz', () => {
+  const description = quizzes[0].description
   const { container, getByLabelText } = render(
     <MemoryRouter initialEntries={[description]}>
       <ThemeProvider theme={createMuiTheme}>
